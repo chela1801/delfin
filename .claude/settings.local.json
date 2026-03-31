@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "Bash(printf 'n\\\\nn\\\\n')",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(open:*)",
+      "Bash(vercel:*)",
+      "WebSearch",
+      "Bash(/usr/local/bin/vercel --prod)",
+      "Bash(/opt/homebrew/bin/vercel --prod)",
+      "Bash(git -C /Users/macbook/Documents/cchela/delfin status)",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(printf .verceln.nextnnode_modulesn.env*.localn)",
+      "Bash(git rm:*)",
+      "Bash(gh repo:*)"
+    ]
+  }
+}
