@@ -1,273 +1,325 @@
 import Link from "next/link";
+import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 
-const PHONE = "+38765246346";
-const WA_LINK = `https://wa.me/${PHONE.replace("+", "")}`;
-const TEL_LINK = `tel:${PHONE}`;
+const WHATSAPP_URL = "https://wa.me/38766246346";
 
 const usluge = [
   {
-    icon: "🏠",
-    naziv: "Čišćenje stambenih prostora",
-    opis: "Stanovi, kuće, generalno i dubinsko čišćenje. Jednokratno ili po ugovoru.",
-    href: "/usluge/cistenje-stambenih",
+    naziv: "Čišćenje stanova i kuća",
+    opis: "Redovno i jednokratno čišćenje stambenih prostora — temeljito, pouzdano, bez stresa.",
+    href: "/usluge/ciscenje-stanova-i-kuca",
+    ikona: "🏠",
   },
   {
-    icon: "🏢",
     naziv: "Čišćenje poslovnih prostora",
-    opis: "Kancelarije, restorani, hoteli, tržni centri. Redovno i vanredno.",
-    href: "/usluge/cistenje-poslovnih",
+    opis: "Čisto radno okruženje za vaš tim — fleksibilni termini koji ne ometaju posao.",
+    href: "/usluge/ciscenje-poslovnih-prostora",
+    ikona: "🏢",
   },
   {
-    icon: "🛋️",
-    naziv: "Dubinsko pranje namještaja",
-    opis: "Dvosjeди, trosjeди, kreveti, fotelje, tepihi — na licu mjesta.",
-    href: "/usluge/dubinsko-pranje",
+    naziv: "Generalno i dubinsko čišćenje",
+    opis: "Kada redovno čišćenje nije dovoljno — kompletna obnova prostora od poda do plafona.",
+    href: "/usluge/generalno-i-dubinsko-ciscenje",
+    ikona: "✨",
   },
   {
-    icon: "🏗️",
-    naziv: "Fasade i prozori",
-    opis: "Pranje staklenih fasada do 25m, klasičnih i silikonskih fasada, skidanje grafita.",
-    href: "/usluge/fasade",
+    naziv: "Čišćenje nakon renoviranja",
+    opis: "Prašina, boja, malter — uklanjamo sve što ostaje nakon radova. Prostor spreman za useljenje.",
+    href: "/usluge/ciscenje-nakon-renoviranja",
+    ikona: "🔨",
   },
   {
-    icon: "🌿",
-    naziv: "Hortikultura",
-    opis: "Orezivanje drveća, uređivanje i održavanje zelenih površina.",
-    href: "/usluge/hortikultura",
-  },
-  {
-    icon: "🏭",
-    naziv: "Facility Management",
-    opis: "Redovno ugovorno održavanje objekata. Trenutno 35.000+ m² u portfoliju.",
-    href: "/facility-management",
+    naziv: "Dubinsko pranje tepiha i namještaja",
+    opis: "Ručno dubinsko pranje tepiha, sofa i tapaciranog namještaja — bez mašina, bez kompromisa.",
+    href: "/usluge/dubinsko-pranje-tepisa",
+    ikona: "🛋️",
   },
 ];
 
-const trustSignali = [
-  { broj: "35.000+", label: "m² u redovnom održavanju" },
-  { broj: "B2B + B2C", label: "puni servis za sve klijente" },
-  { broj: "Prijedor", label: "i cijela regija" },
-  { broj: "Industrijska", label: "oprema profesionalnog nivoa" },
+const zasto = [
+  {
+    naslov: "Sistemičan pristup",
+    opis: "Svaki prostor tretiramo po protokolu — ništa se ne preskače, ništa se ne ostavlja slučaju.",
+    broj: "01",
+  },
+  {
+    naslov: "Pouzdani termini",
+    opis: "Dolazimo kad kažemo. Završavamo na vrijeme. Bez iznenađenja i pregovaranja na licu mjesta.",
+    broj: "02",
+  },
+  {
+    naslov: "Profesionalna sredstva",
+    opis: "Koristimo provjerena sredstva i opremu — efikasna, sigurna za stanare i domaće ljubimce.",
+    broj: "03",
+  },
+  {
+    naslov: "Dugoročni odnos",
+    opis: "Nije nam cilj jedan posao — cilj nam je da budemo agencija kojoj se vraćate.",
+    broj: "04",
+  },
 ];
 
-const recenzije = [
-  {
-    tekst: "Odlična ekipa, profesionalni pristup. Stanove čiste redovno već godinama. Uvijek na vrijeme, uvijek uredno.",
-    autor: "Amira K.",
-    tip: "B2C",
-  },
-  {
-    tekst: "Delfin nam čisti poslovni prostor već dvije godine. Pouzdani, diskretni, bez komplikacija. Preporučujem.",
-    autor: "Direktor, IT kompanija Prijedor",
-    tip: "B2B",
-  },
-  {
-    tekst: "Pranje trosjeda je bilo kao novi. Nisam vjerovala da se može tako očistiti. Zakazujem svake godine.",
-    autor: "Maja P.",
-    tip: "B2C",
-  },
-];
+/* ─── Stranica ──────────────────────────────────────────────── */
 
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section className="bg-white pt-16 pb-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-brand-light text-brand text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 bg-brand rounded-full"></span>
-              Prijedor i regija · 35.000+ m² u portfoliju
+
+      {/* ═══════════════════════════════════════════
+          HERO — tamna pozadina, animirani krugovi
+      ═══════════════════════════════════════════ */}
+      <section className="relative bg-[var(--color-primary)] min-h-screen flex flex-col justify-center pt-40 pb-20 md:pb-24">
+
+        {/* Animirani krugovi — izolovani od overflow */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute bottom-[-5rem] left-[8%] w-[560px] h-[560px] rounded-full bg-[var(--color-secondary)] opacity-55 blur-2xl"
+            style={{
+              boxShadow: "0 0 140px 60px rgba(26,86,176,0.40)",
+              animation: "blob-drift 13s ease-in-out infinite",
+              willChange: "transform",
+            }}
+          />
+          <div
+            className="absolute bottom-[-9rem] left-[38%] w-[680px] h-[680px] rounded-full bg-[#2563EB] opacity-40 blur-2xl"
+            style={{
+              boxShadow: "0 0 180px 80px rgba(37,99,235,0.30)",
+              animation: "blob-drift-alt 18s ease-in-out infinite",
+              willChange: "transform",
+            }}
+          />
+        </div>
+
+        {/* Sadržaj */}
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 w-full">
+
+          <span className="inline-flex items-center gap-1.5 mb-8 px-3 py-1.5 bg-white/10 border border-white/20 text-white/90 text-sm font-medium rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
+            Prijedor i regija
+          </span>
+
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-10">
+            Profesionalno čišćenje<br />koje ne trebaš provjeravati
+          </h1>
+
+          <div className="flex justify-end">
+            <div className="w-full max-w-sm flex flex-col gap-6">
+              <p className="text-base text-white/60 leading-relaxed">
+                Stanovi, kuće, poslovni prostori — sistemičan pristup, pouzdani termini, kvalitet koji se vidi.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                    shadow-[0_4px_18px_rgba(74,85,104,0.50)]
+                    hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
+                    active:translate-y-0 active:shadow-[0_2px_8px_rgba(74,85,104,0.35)] active:scale-[0.98]"
+                >
+                  Pošalji upit na WhatsApp
+                </a>
+                <Link
+                  href="/usluge"
+                  className="inline-flex items-center justify-center px-6 py-3.5 bg-[#6B7A8D] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                    shadow-[0_4px_18px_rgba(107,122,141,0.45)]
+                    hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(107,122,141,0.60)] hover:bg-[#5a6a7d]
+                    active:translate-y-0 active:shadow-[0_2px_8px_rgba(107,122,141,0.30)] active:scale-[0.98]"
+                >
+                  Pogledaj usluge
+                </Link>
+              </div>
+              <p className="text-xs text-white/35">
+                Firma ili poslovni prostor?{" "}
+                <Link href="/firme" className="text-white/60 font-semibold hover:text-white transition-colors underline underline-offset-2">
+                  Ponuda za firme →
+                </Link>
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Profesionalno čišćenje i{" "}
-              <span className="text-brand">održavanje objekata</span>
-            </h1>
-            <p className="text-xl text-gray-500 mb-8 max-w-2xl leading-relaxed">
-              Delfin nije generički servis za čišćenje. Upravljamo kompleksnim objektima,
-              radimo sa firmama i domaćinstvima — i rezultati govore sami za sebe.
+          </div>
+        </div>
+
+        {/* Prijelaz → bijela, desna krivina */}
+        <CurveRight fill="#FFFFFF" />
+      </section>
+
+
+      {/* ═══════════════════════════════════════════
+          TRUST BAR + USLUGE — bijela sekcija
+      ═══════════════════════════════════════════ */}
+      <section className="relative bg-white pt-14 pb-24 md:pb-28">
+
+        {/* Trust bar */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-20">
+
+          {/* Divider — ista krivulja kao sekcijski prijelaz (desna) */}
+          <div className="mb-10" aria-hidden="true">
+            <svg viewBox="0 0 1440 28" preserveAspectRatio="none" className="w-full h-5 md:h-6" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0,0 Q480,28 1440,8" fill="none" stroke="#D1DCF0" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </div>
+
+          {/* Stats sa vertikalnim linijama */}
+          <div className="grid grid-cols-2 md:flex md:items-center text-center">
+            {[
+              { broj: "5+",       label: "godina iskustva"       },
+              { broj: "200+",     label: "zadovoljnih klijenata" },
+              { broj: "5",        label: "vrsta usluga"          },
+              { broj: "Prijedor", label: "i regija"              },
+            ].map((item, i) => (
+              <div
+                key={item.label}
+                className={`flex flex-col gap-1 py-4 md:py-0 md:flex-1 md:px-8
+                  ${i !== 0 ? "md:border-l md:border-[var(--color-border)]" : ""}
+                  ${i % 2 !== 0 ? "border-l border-[var(--color-border)] md:border-l" : ""}
+                `}
+              >
+                <span className="text-2xl font-bold text-[var(--color-primary)]">{item.broj}</span>
+                <span className="text-sm text-[var(--color-muted)] font-medium">{item.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Divider — ista krivulja kao sekcijski prijelaz (lijeva) */}
+          <div className="mt-10" aria-hidden="true">
+            <svg viewBox="0 0 1440 28" preserveAspectRatio="none" className="w-full h-5 md:h-6" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0,8 Q960,28 1440,0" fill="none" stroke="#D1DCF0" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </div>
+
+        </div>
+
+        {/* Usluge */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="mb-10">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-2">Usluge</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)] tracking-tight">
+              Šta radimo
+            </h2>
+            <p className="text-[var(--color-muted)] mt-3 max-w-md">
+              Svaka usluga ima vlastiti protokol — nijedan prostor nije isti.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-brand text-white font-semibold px-6 py-3.5 rounded-xl text-base hover:bg-brand-dark transition-colors"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Pošalji poruku
-              </a>
-              <a
-                href={TEL_LINK}
-                className="inline-flex items-center justify-center gap-2 border border-gray-200 text-gray-700 font-semibold px-6 py-3.5 rounded-xl text-base hover:border-brand hover:text-brand transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
-                </svg>
-                065 246 346
-              </a>
-            </div>
           </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
 
-          {/* Trust signali */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
-            {trustSignali.map((s) => (
-              <div key={s.label} className="bg-slate-50 rounded-xl p-5 border border-gray-100">
-                <div className="text-2xl font-bold text-brand mb-1">{s.broj}</div>
-                <div className="text-sm text-gray-500">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* B2B vs B2C */}
-      <section className="bg-gray-50 py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
-            Radimo sa svima
-          </h2>
-          <p className="text-gray-500 text-center mb-12 max-w-xl mx-auto">
-            Bilo da trebate čišćenje stana ili upravljanje kompleksom od hiljada kvadrata —
-            imamo kapacitet i iskustvo.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* B2C */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-100">
-              <div className="text-3xl mb-4">🏠</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Za domaćinstva</h3>
-              <p className="text-gray-500 mb-6 text-sm leading-relaxed">
-                Čišćenje stanova i kuća, dubinsko pranje namještaja i tepiha,
-                generalna čišćenja, selidbe — brzo, pouzdano, bez komplikacija.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600 mb-7">
-                {["Jednokratno ili redovno", "Jasna cijena unaprijed", "Brz odgovor i dolazak", "Garancija zadovoljstva"].map((i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <span className="text-brand">✓</span> {i}
-                  </li>
-                ))}
-              </ul>
-              <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-brand text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-brand-dark transition-colors">
-                Pošalji upit
-              </a>
-            </div>
-
-            {/* B2B */}
-            <div className="bg-gray-900 rounded-2xl p-8 text-white">
-              <div className="text-3xl mb-4">🏢</div>
-              <h3 className="text-xl font-bold mb-2">Za firme i objekte</h3>
-              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-                Kancelarije, restorani, hoteli, tržni centri, industrijski objekti.
-                Ugovoreno redovno održavanje sa SLA pristupom i izvještavanjem.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300 mb-7">
-                {["35.000+ m² u redovnom upravljanju", "Ugovorni odnos sa SLA", "Profesionalna oprema", "Reference dostupne na upit"].map((i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <span className="text-brand-light">✓</span> {i}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/facility-management"
-                className="inline-flex items-center gap-2 border border-white/20 text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-white/10 transition-colors">
-                Facility Management →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Usluge */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
-            Naše usluge
-          </h2>
-          <p className="text-gray-500 text-center mb-12">
-            Kompletan servis od stana do industrijske fasade.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {usluge.map((u) => (
+            {/* 5 usluga */}
+            {usluge.map((usluga) => (
               <Link
-                key={u.naziv}
-                href={u.href}
-                className="group bg-slate-50 rounded-xl p-6 border border-gray-100 hover:border-brand hover:shadow-md transition-all"
+                key={usluga.href}
+                href={usluga.href}
+                className="group flex flex-col gap-4 p-5 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)] transition-all duration-150 min-h-[220px]
+                  shadow-[0_2px_12px_rgba(10,45,110,0.07)]
+                  hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(10,45,110,0.13)] hover:border-[var(--color-primary)]/20
+                  active:translate-y-0 active:shadow-[0_2px_8px_rgba(10,45,110,0.08)] active:scale-[0.99]"
               >
-                <div className="text-3xl mb-3">{u.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors">
-                  {u.naziv}
+                <span className="w-10 h-10 flex items-center justify-center bg-[var(--color-bg-alt)] text-[var(--color-accent)] rounded-[var(--radius-lg)] text-lg group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-200 flex-shrink-0">
+                  {usluga.ikona}
+                </span>
+                <h3 className="text-sm font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors leading-snug flex-1">
+                  {usluga.naziv}
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{u.opis}</p>
+                <span className="text-xs font-semibold text-[var(--color-muted)] group-hover:text-[var(--color-primary)] transition-colors mt-auto">
+                  Saznaj više →
+                </span>
               </Link>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link href="/usluge"
-              className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 font-semibold px-6 py-3 rounded-xl text-sm hover:border-brand hover:text-brand transition-colors">
-              Pogledaj sve usluge →
+
+            {/* 6. kartica — CTA */}
+            <Link
+              href="/usluge"
+              className="group flex flex-col justify-between p-5 bg-[var(--color-primary)] border border-[var(--color-primary)] rounded-[var(--radius-xl)] transition-all duration-150 min-h-[220px]
+                shadow-[0_2px_12px_rgba(10,45,110,0.25)]
+                hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(10,45,110,0.40)] hover:bg-[var(--color-primary-hover)]
+                active:translate-y-0 active:shadow-[0_2px_8px_rgba(10,45,110,0.20)] active:scale-[0.99]"
+            >
+              <span className="w-10 h-10 flex items-center justify-center bg-white/10 text-white rounded-[var(--radius-lg)] text-lg flex-shrink-0">
+                →
+              </span>
+              <div className="flex flex-col gap-1 mt-auto">
+                <h3 className="text-sm font-semibold text-white leading-snug">
+                  Sve usluge
+                </h3>
+                <p className="text-xs text-white/55">
+                  Pogledaj kompletnu ponudu
+                </p>
+              </div>
             </Link>
+
           </div>
         </div>
+
+        {/* Prijelaz → tamna, lijeva krivina */}
+        <CurveLeft fill="#0A2D6E" />
       </section>
 
-      {/* Recenzije */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-3">
-            Šta kažu klijenti
+
+      {/* ═══════════════════════════════════════════
+          CTA BANNER — tamna sekcija
+      ═══════════════════════════════════════════ */}
+      <section className="relative bg-[var(--color-primary)] pt-24 md:pt-28 pb-24 md:pb-28">
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Kontakt</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight max-w-lg">
+            Trebaš čišćenje?<br />Javi se danas.
           </h2>
-          <p className="text-gray-500 text-center mb-12">
-            Gradimo povjerenje — jedan objekat po jedan.
+          <p className="text-white/55 max-w-sm leading-relaxed">
+            Odgovaramo brzo. Bez dugih formi i čekanja — jedan WhatsApp i dogovoreno je.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {recenzije.map((r) => (
-              <div key={r.autor} className="bg-white rounded-xl p-6 border border-gray-100">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-sm">★</span>
-                  ))}
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-5 italic">
-                  "{r.tekst}"
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-900 text-sm">{r.autor}</span>
-                  <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full border border-gray-100">
-                    {r.tip}
-                  </span>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-7 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+              shadow-[0_4px_18px_rgba(74,85,104,0.50)]
+              hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
+              active:translate-y-0 active:shadow-[0_2px_8px_rgba(74,85,104,0.35)] active:scale-[0.98]"
+          >
+            Pošalji upit na WhatsApp
+          </a>
+        </div>
+
+        {/* Prijelaz → bg-alt, desna krivina */}
+        <CurveRight fill="#EFF5FB" />
+      </section>
+
+
+      {/* ═══════════════════════════════════════════
+          ZAŠTO DELFIN — bg-alt sekcija
+      ═══════════════════════════════════════════ */}
+      <section className="relative bg-[var(--color-bg-alt)] pt-24 md:pt-28 pb-24 md:pb-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="mb-10">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-2">Zašto mi</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)] tracking-tight">
+              Zašto Delfin
+            </h2>
+            <p className="text-[var(--color-muted)] mt-3 max-w-md">
+              Nije dovoljno da je čisto — mora biti sigurno i predvidivo.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {zasto.map((stavka) => (
+              <div
+                key={stavka.naslov}
+                className="flex gap-5 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)]"
+              >
+                <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-[var(--color-primary)] text-white text-sm font-bold rounded-full">
+                  {stavka.broj}
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="font-semibold text-[var(--color-text)]">{stavka.naslov}</h3>
+                  <p className="text-sm text-[var(--color-muted)] leading-relaxed">{stavka.opis}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Prijelaz → footer (tamna), lijeva krivina */}
+        <CurveLeft fill="#0A2D6E" />
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20 px-4 bg-brand">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Dolazimo jednom. Vraćate nas stalno.
-          </h2>
-          <p className="text-blue-100 mb-8 text-lg">
-            Zakažite čišćenje ili zatražite ponudu za vaš objekat. Odgovaramo brzo.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-brand font-bold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              WhatsApp
-            </a>
-            <a href={TEL_LINK}
-              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/10 transition-colors">
-              Pozovi: 065 246 346
-            </a>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

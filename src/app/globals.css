@@ -1,13 +1,164 @@
 @import "tailwindcss";
 
-@theme {
-  --color-brand: #1a56db;
-  --color-brand-dark: #1240a8;
-  --color-brand-light: #e8f0fe;
-  --color-silver: #8fa3b8;
-  --color-slate-50: #f8fafc;
+/* ═══════════════════════════════════════════
+   BRAND — Boje
+═══════════════════════════════════════════ */
+:root {
+  --color-primary:        #0A2D6E;
+  --color-primary-hover:  #091F4F;
+  --color-secondary:      #1A56B0;
+  --color-accent:         #4A5568;
+  --color-accent-hover:   #3a4255;
+  --color-muted:          #6B7A8D;
+  --color-bg:             #FFFFFF;
+  --color-bg-alt:         #EFF5FB;
+  --color-text:           #1A1A2E;
+  --color-text-muted:     #6B7A8D;
+  --color-border:         #D1DCF0;
+}
 
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+/* ═══════════════════════════════════════════
+   BRAND — Tipografija
+═══════════════════════════════════════════ */
+:root {
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ═══════════════════════════════════════════
+   BRAND — Border radius sistem
+═══════════════════════════════════════════ */
+:root {
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-full: 9999px;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT — Spacing sistem
+   Mijenja se po projektu — jedno mjesto, sve se prilagođava
+═══════════════════════════════════════════ */
+:root {
+  /* Kontejner */
+  --container-max:    72rem;    /* max-w-6xl — max širina sadržaja */
+  --container-px:     1.5rem;   /* padding lijevo/desno na mobilnom */
+  --container-px-sm:  1.5rem;   /* sm breakpoint */
+
+  /* Sekcije — vertikalni spacing */
+  --section-py:       4rem;     /* py-16 — standardna sekcija */
+  --section-py-lg:    5rem;     /* py-20 — veća sekcija (hero, CTA) */
+  --section-py-sm:    2rem;     /* py-8  — kompaktna sekcija (trust bar) */
+
+  /* Hero specifično */
+  --hero-py:          5rem;     /* py-20 */
+  --hero-py-lg:       7rem;     /* md:py-28 */
+}
+
+/* ═══════════════════════════════════════════
+   KOMPONENTE — Kartice
+═══════════════════════════════════════════ */
+:root {
+  --card-padding:     1.5rem;   /* p-6 */
+  --card-radius:      var(--radius-lg);
+  --card-border:      1px solid var(--color-border);
+}
+
+/* ═══════════════════════════════════════════
+   KOMPONENTE — Dugmad (Buttons)
+   Tri varijante: primary, secondary (accent), ghost
+═══════════════════════════════════════════ */
+:root {
+  --btn-py:           0.875rem; /* py-3.5 */
+  --btn-px:           1.5rem;   /* px-6 */
+  --btn-px-lg:        1.75rem;  /* px-7 — veće dugme */
+  --btn-radius:       var(--radius-md);
+  --btn-font-weight:  600;
+
+  /* Primary */
+  --btn-primary-bg:   var(--color-primary);
+  --btn-primary-hover: var(--color-primary-hover);
+  --btn-primary-text: #FFFFFF;
+
+  /* Secondary (accent / graphite) */
+  --btn-secondary-bg:    var(--color-accent);
+  --btn-secondary-hover: var(--color-accent-hover);
+  --btn-secondary-text:  #FFFFFF;
+
+  /* Ghost */
+  --btn-ghost-border:  var(--color-border);
+  --btn-ghost-text:    var(--color-text);
+  --btn-ghost-hover-border: var(--color-primary);
+  --btn-ghost-hover-text:   var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════
+   KOMPONENTE — Header
+═══════════════════════════════════════════ */
+:root {
+  --header-height:    4rem;     /* h-16 */
+}
+
+/* ═══════════════════════════════════════════
+   KOMPONENTE — Ikonice u karticama
+═══════════════════════════════════════════ */
+:root {
+  --icon-size:        2.5rem;   /* w-10 h-10 */
+  --icon-radius:      var(--radius-md);
+  --icon-bg:          color-mix(in srgb, var(--color-accent) 10%, transparent);
+  --icon-color:       var(--color-accent);
+  --icon-bg-hover:    var(--color-accent);
+  --icon-color-hover: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════════
+   KOMPONENTE — Sekcija headings
+═══════════════════════════════════════════ */
+:root {
+  --section-heading-mb:  2.5rem;   /* mb-10 */
+  --section-label-mb:    0.75rem;  /* mb-3 */
+}
+
+/* ═══════════════════════════════════════════
+   TAILWIND THEME BRIDGE
+   Prebacuje CSS varijable u Tailwind utility klase
+═══════════════════════════════════════════ */
+@theme inline {
+  --color-primary:        var(--color-primary);
+  --color-primary-hover:  var(--color-primary-hover);
+  --color-secondary:      var(--color-secondary);
+  --color-accent:         var(--color-accent);
+  --color-accent-hover:   var(--color-accent-hover);
+  --color-muted:          var(--color-muted);
+  --color-bg:             var(--color-bg);
+  --color-bg-alt:         var(--color-bg-alt);
+  --color-text:           var(--color-text);
+  --color-text-muted:     var(--color-text-muted);
+  --color-border:         var(--color-border);
+}
+
+/* ═══════════════════════════════════════════
+   ANIMACIJE — Hero blob drift
+   Sporo, organsko kretanje krugova u pozadini
+═══════════════════════════════════════════ */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0px,    0px)   scale(1);    }
+  33%       { transform: translate(-50px, -35px)  scale(1.06); }
+  66%       { transform: translate(35px,   28px)  scale(0.96); }
+}
+@keyframes blob-drift-alt {
+  0%, 100% { transform: translate(0px,   0px)   scale(1);    }
+  33%       { transform: translate(45px, -45px)  scale(1.08); }
+  66%       { transform: translate(-30px, 30px)  scale(0.94); }
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
@@ -15,7 +166,10 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: #fff;
-  color: #0f172a;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: none;
 }
