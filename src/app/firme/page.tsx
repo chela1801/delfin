@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Building2, Sparkles, HardHat, ArrowRight, type LucideIcon } from "lucide-react";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
+import HeroBg from "@/components/ui/HeroBg";
 
 const prednosti = [
   {
@@ -24,24 +26,27 @@ const prednosti = [
   },
 ];
 
-const uslugeFirme = [
+const uslugeFirme: { naziv: string; opis: string; frekvencije: string[]; Ikona: LucideIcon; href: string }[] = [
   {
     naziv: "Redovno čišćenje poslovnih prostora",
     opis: "Kancelarije, sale za sastanke, hodnici, sanitarni čvorovi — po dogovorenom rasporedu.",
     frekvencije: ["Dnevno", "Sedmično", "Po dogovoru"],
-    ikona: "🏢",
+    Ikona: Building2,
+    href: "/usluge/ciscenje-poslovnih-prostora",
   },
   {
     naziv: "Generalno i dubinsko čišćenje",
     opis: "Kompletna obnova prostora — idealno za sezonsko čišćenje ili pripremu novog ureda.",
     frekvencije: ["Jednokratno", "Sezonski"],
-    ikona: "✨",
+    Ikona: Sparkles,
+    href: "/usluge/generalno-i-dubinsko-ciscenje",
   },
   {
     naziv: "Čišćenje nakon renoviranja",
     opis: "Brzo vraćamo uredski prostor u funkciju nakon radova — prašina, boja, malter.",
     frekvencije: ["Jednokratno"],
-    ikona: "🔨",
+    Ikona: HardHat,
+    href: "/usluge/ciscenje-nakon-renoviranja",
   },
 ];
 
@@ -62,8 +67,11 @@ export default function FirmePage() {
     <>
 
       {/* ═══ HERO sa formom ══════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] pt-32 pb-28">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
+
+        <HeroBg />
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
 
             {/* Lijevo — tekst */}
@@ -72,7 +80,7 @@ export default function FirmePage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
                 Za firme i poslovne prostore
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
                 Čišćenje poslovnih prostora<br className="hidden md:block" /> u Prijedoru
               </h1>
               <p className="text-lg text-white/60 leading-relaxed max-w-lg">
@@ -92,14 +100,15 @@ export default function FirmePage() {
               <p className="text-sm text-white/40">
                 Trebaš čišćenje stana ili kuće?{" "}
                 <Link href="/usluge" className="text-white/65 font-semibold hover:text-white transition-colors underline underline-offset-2">
-                  Pogledaj usluge za privatne korisnike →
+                  Pogledaj usluge za privatne korisnike
                 </Link>
               </p>
             </div>
 
             {/* Desno — forma */}
             <div className="w-full lg:w-96 flex-shrink-0">
-              <div className="p-6 bg-white rounded-[var(--radius-xl)] shadow-[0_8px_40px_rgba(0,0,0,0.15)]">
+              <div className="p-6 bg-white rounded-[var(--radius-xl)] shadow-[0_8px_40px_rgba(0,0,0,0.15)]
+                transition-all duration-300 hover:shadow-[0_16px_56px_rgba(0,0,0,0.22)] hover:-translate-y-1">
                 <h3 className="font-bold text-[var(--color-text)] text-lg mb-5">Zatražite ponudu</h3>
                 <form className="flex flex-col gap-3">
                   {[
@@ -142,7 +151,7 @@ export default function FirmePage() {
                   </div>
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                    className="w-full inline-flex items-center justify-center px-6 py-3 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                       shadow-[0_4px_18px_rgba(74,85,104,0.40)]
                       hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.55)] hover:bg-[#3a4255]
                       active:translate-y-0 active:scale-[0.98]"
@@ -156,12 +165,13 @@ export default function FirmePage() {
 
           </div>
         </div>
+
         <CurveRight fill="#FFFFFF" />
       </section>
 
 
       {/* ═══ PREDNOSTI ZA FIRME ══════════════════════════════ */}
-      <section className="relative bg-white pt-20 pb-24">
+      <section className="relative bg-white pt-14 md:pt-20 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-2">Zašto Delfin</p>
@@ -175,7 +185,9 @@ export default function FirmePage() {
               <div
                 key={s.broj}
                 className="flex gap-5 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)]
-                  shadow-[0_2px_12px_rgba(10,45,110,0.06)]"
+                  shadow-[0_2px_16px_rgba(10,45,110,0.07)]
+                  hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(10,45,110,0.13)] hover:border-[var(--color-primary)]/20
+                  active:translate-y-0 transition-all duration-200"
               >
                 <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-[var(--color-primary)] text-white text-sm font-bold rounded-full">
                   {s.broj}
@@ -188,12 +200,13 @@ export default function FirmePage() {
             ))}
           </div>
         </div>
-        <CurveLeft fill="#EFF5FB" />
+
+        <CurveLeft fill="var(--color-bg-alt)" />
       </section>
 
 
       {/* ═══ USLUGE ZA FIRME ════════════════════════════════ */}
-      <section className="relative bg-[var(--color-bg-alt)] pt-24 pb-24">
+      <section className="relative bg-[var(--color-bg-alt)] pt-14 md:pt-20 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-2">Ponuda</p>
@@ -204,15 +217,19 @@ export default function FirmePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {uslugeFirme.map((u) => (
-              <div
+              <Link
                 key={u.naziv}
-                className="flex flex-col gap-4 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)]
-                  shadow-[0_2px_12px_rgba(10,45,110,0.06)]"
+                href={u.href}
+                className="group flex flex-col gap-4 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)]
+                  shadow-[0_2px_16px_rgba(10,45,110,0.07)]
+                  hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(10,45,110,0.13)] hover:border-[var(--color-primary)]/20
+                  active:translate-y-0 active:scale-[0.99] transition-all duration-200"
               >
-                <span className="w-11 h-11 flex items-center justify-center bg-[var(--color-bg-alt)] rounded-[var(--radius-lg)] text-xl">
-                  {u.ikona}
+                <span className="w-11 h-11 flex items-center justify-center bg-[var(--color-bg-alt)] text-[var(--color-accent)] rounded-[var(--radius-lg)]
+                  group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-200">
+                  <u.Ikona size={22} />
                 </span>
-                <h3 className="font-semibold text-[var(--color-text)]">{u.naziv}</h3>
+                <h3 className="font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors">{u.naziv}</h3>
                 <p className="text-sm text-[var(--color-muted)] leading-relaxed flex-1">{u.opis}</p>
                 <div className="pt-3 border-t border-[var(--color-border)] flex flex-wrap gap-1.5">
                   {u.frekvencije.map((f) => (
@@ -221,17 +238,42 @@ export default function FirmePage() {
                     </span>
                   ))}
                 </div>
-              </div>
+                <span className="mt-auto inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                  shadow-[0_4px_14px_rgba(74,85,104,0.30)]
+                  group-hover:shadow-[0_8px_24px_rgba(74,85,104,0.48)] group-hover:bg-[#3a4255]">
+                  Saznaj više <ArrowRight size={14} />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
-        <CurveRight fill="#0A2D6E" />
+
+        <CurveLeft fill="#0A2D6E" stroke="transparent" />
       </section>
 
 
       {/* ═══ PROCES ══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] pt-24 pb-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="relative bg-[var(--color-primary)] pt-16 md:pt-24 pb-20 md:pb-28 mt-[-2px] overflow-hidden">
+
+        {/* Top fade — maskira spoj sa CurveLeft */}
+        <div
+          className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
+          style={{ background: "linear-gradient(180deg, #0A2D6E 0%, transparent 100%)" }}
+        />
+
+        {/* Statični blur krugovi */}
+        <div className="absolute bottom-[-5rem] left-[-8%] w-[420px] h-[420px] rounded-full bg-[var(--color-secondary)] opacity-35 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-4rem] left-[25%] w-[440px] h-[440px] rounded-full bg-[var(--color-secondary)] opacity-40 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-7rem] left-[55%] w-[500px] h-[500px] rounded-full bg-[#2563EB] opacity-30 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-5rem] right-[-8%] w-[420px] h-[420px] rounded-full bg-[var(--color-secondary)] opacity-35 blur-3xl pointer-events-none" />
+
+        {/* Bottom fade — maskira prelaz ka footeru */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-10"
+          style={{ background: "linear-gradient(0deg, #0A2D6E 0%, transparent 100%)" }}
+        />
+
+        <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-2">Proces</p>
             <h2 className="text-3xl font-bold text-white tracking-tight">Kako to funkcioniše</h2>
@@ -239,7 +281,7 @@ export default function FirmePage() {
           </div>
 
           {/* Desktop stepper */}
-          <div className="hidden md:grid grid-cols-4 gap-6">
+          <div className="hidden lg:grid grid-cols-4 gap-6">
             {proces.map((k, i) => (
               <div key={k.broj} className="flex flex-col gap-4">
                 <div className="flex items-center gap-3">
@@ -258,9 +300,11 @@ export default function FirmePage() {
           </div>
 
           {/* Mobile lista */}
-          <div className="flex flex-col gap-3 md:hidden">
+          <div className="flex flex-col gap-3 lg:hidden">
             {proces.map((k) => (
-              <div key={k.broj} className="flex gap-4 p-5 bg-white/5 border border-white/10 rounded-[var(--radius-xl)]">
+              <div key={k.broj} className="flex gap-4 p-5 bg-white/5 border border-white/10 rounded-[var(--radius-xl)]
+                hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5
+                transition-all duration-200">
                 <span className="flex-shrink-0 w-9 h-9 bg-white text-[var(--color-primary)] text-sm font-bold rounded-full flex items-center justify-center">
                   {k.broj}
                 </span>
@@ -272,6 +316,7 @@ export default function FirmePage() {
             ))}
           </div>
         </div>
+
       </section>
 
     </>

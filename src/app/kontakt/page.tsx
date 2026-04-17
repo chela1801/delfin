@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { CurveRight } from "@/components/ui/Curves";
+import { MessageCircle, MapPin, Clock } from "lucide-react";
+import { CurveRight, CurveLeft } from "@/components/ui/Curves";
+import HeroBg from "@/components/ui/HeroBg";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 const PHONE = "+387 66 246 346";
@@ -20,32 +22,33 @@ export default function KontaktPage() {
     <>
 
       {/* ═══ HERO ═══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] pt-32 pb-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <nav className="text-sm text-white/40 mb-6 flex items-center gap-2">
-            <Link href="/" className="hover:text-white/70 transition-colors">Početna</Link>
-            <span>/</span>
-            <span className="text-white/70">Kontakt</span>
-          </nav>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-4">
+      <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
+
+        <HeroBg />
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-4 sm:mb-5">
             Kontaktiraj nas
           </h1>
-          <p className="text-lg text-white/60 max-w-md">
+          <p className="text-lg text-white/60 max-w-md leading-relaxed">
             Privatni korisnici — WhatsApp. Firme i poslovni prostori — forma ispod.
           </p>
         </div>
+
         <CurveRight fill="#FFFFFF" />
       </section>
 
 
       {/* ═══ SPLIT — B2C i B2B ══════════════════════════════ */}
-      <section className="bg-white pt-16 pb-20">
+      <section className="relative bg-white pt-12 md:pt-16 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
             {/* B2C — WhatsApp */}
             <div className="flex flex-col gap-6 p-7 border-2 border-[var(--color-primary)] rounded-[var(--radius-xl)]
-              shadow-[0_4px_24px_rgba(10,45,110,0.10)]">
+              shadow-[0_4px_24px_rgba(10,45,110,0.10)]
+              hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(10,45,110,0.18)]
+              transition-all duration-200">
               <div>
                 <span className="inline-block px-3 py-1 bg-[var(--color-primary)] text-white text-xs font-semibold rounded-full mb-4">
                   Privatni korisnici
@@ -60,18 +63,24 @@ export default function KontaktPage() {
               </div>
 
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3 p-3.5 bg-[var(--color-bg-alt)] rounded-[var(--radius-lg)]">
-                  <span className="w-9 h-9 bg-[var(--color-primary)] rounded-[var(--radius-md)] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                    WA
+                <div className="group flex items-center gap-3 p-3.5 bg-[var(--color-bg-alt)] rounded-[var(--radius-lg)]
+                  border border-transparent hover:border-[var(--color-border)] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(10,45,110,0.08)]
+                  transition-all duration-200 cursor-default">
+                  <span className="w-9 h-9 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-accent)] rounded-[var(--radius-md)] flex items-center justify-center flex-shrink-0
+                    group-hover:bg-[var(--color-primary)] group-hover:border-[var(--color-primary)] group-hover:text-white transition-all duration-200">
+                    <MessageCircle size={18} />
                   </span>
                   <div>
                     <p className="text-sm font-semibold text-[var(--color-text)]">{PHONE}</p>
                     <p className="text-xs text-[var(--color-muted)]">WhatsApp dostupan svaki dan</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3.5 bg-[var(--color-bg-alt)] rounded-[var(--radius-lg)]">
-                  <span className="w-9 h-9 bg-[var(--color-primary)] rounded-[var(--radius-md)] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                    📍
+                <div className="group flex items-center gap-3 p-3.5 bg-[var(--color-bg-alt)] rounded-[var(--radius-lg)]
+                  border border-transparent hover:border-[var(--color-border)] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(10,45,110,0.08)]
+                  transition-all duration-200 cursor-default">
+                  <span className="w-9 h-9 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-accent)] rounded-[var(--radius-md)] flex items-center justify-center flex-shrink-0
+                    group-hover:bg-[var(--color-primary)] group-hover:border-[var(--color-primary)] group-hover:text-white transition-all duration-200">
+                    <MapPin size={18} />
                   </span>
                   <div>
                     <p className="text-sm font-semibold text-[var(--color-text)]">Prijedor, BiH</p>
@@ -84,7 +93,7 @@ export default function KontaktPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                className="mt-auto inline-flex w-full items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                   shadow-[0_4px_18px_rgba(74,85,104,0.45)]
                   hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.60)] hover:bg-[#3a4255]
                   active:translate-y-0 active:scale-[0.98]"
@@ -95,7 +104,9 @@ export default function KontaktPage() {
 
             {/* B2B — Forma */}
             <div className="flex flex-col gap-6 p-7 border border-[var(--color-border)] rounded-[var(--radius-xl)]
-              shadow-[0_2px_12px_rgba(10,45,110,0.06)]">
+              shadow-[0_2px_12px_rgba(10,45,110,0.06)]
+              hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(10,45,110,0.12)] hover:border-[var(--color-primary)]/25
+              transition-all duration-200">
               <div>
                 <span className="inline-block px-3 py-1 bg-[var(--color-bg-alt)] text-[var(--color-muted)] text-xs font-semibold rounded-full mb-4">
                   Firme i poslovni prostori
@@ -136,9 +147,9 @@ export default function KontaktPage() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center px-6 py-3.5 bg-[#6B7A8D] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
-                    shadow-[0_4px_18px_rgba(107,122,141,0.40)]
-                    hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(107,122,141,0.55)] hover:bg-[#5a6a7d]
+                  className="inline-flex items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                    shadow-[0_4px_18px_rgba(74,85,104,0.40)]
+                    hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.55)] hover:bg-[#3a4255]
                     active:translate-y-0 active:scale-[0.98]"
                 >
                   Pošalji upit
@@ -148,11 +159,13 @@ export default function KontaktPage() {
 
           </div>
         </div>
+
+        <CurveLeft fill="var(--color-bg-alt)" />
       </section>
 
 
       {/* ═══ RADNO VRIJEME + MAPA ═══════════════════════════ */}
-      <section className="bg-[var(--color-bg-alt)] py-16">
+      <section className="relative bg-[var(--color-bg-alt)] pt-14 md:pt-20 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
@@ -172,21 +185,24 @@ export default function KontaktPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-[var(--color-muted)]">
-                WhatsApp dostupan i van radnog vremena — odgovaramo u roku od par sati.
-              </p>
+              <div className="flex items-start gap-2.5 p-4 bg-white border border-[var(--color-border)] rounded-[var(--radius-lg)]">
+                <Clock size={16} className="text-[var(--color-primary)] flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-[var(--color-muted)] leading-relaxed">
+                  WhatsApp dostupan i van radnog vremena — odgovaramo u roku od par sati.
+                </p>
+              </div>
             </div>
 
             {/* Mapa placeholder */}
-            <div className="w-full aspect-[16/10] bg-[var(--color-border)] rounded-[var(--radius-xl)] flex items-center justify-center border border-[var(--color-border)]">
-              <div className="text-center">
-                <span className="text-2xl opacity-30">🗺️</span>
-                <p className="text-sm text-[var(--color-muted)] font-medium mt-2">Google Maps — Prijedor</p>
-              </div>
+            <div className="w-full aspect-[16/10] bg-white border-2 border-dashed border-[var(--color-border)] rounded-[var(--radius-xl)] flex flex-col items-center justify-center gap-2">
+              <MapPin size={32} className="opacity-20 text-[var(--color-muted)]" />
+              <p className="text-sm text-[var(--color-muted)] font-medium">Google Maps — Prijedor</p>
             </div>
 
           </div>
         </div>
+
+        <CurveLeft fill="#0A2D6E" stroke="transparent" />
       </section>
 
     </>

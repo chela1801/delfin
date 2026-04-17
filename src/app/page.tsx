@@ -1,38 +1,40 @@
 import Link from "next/link";
+import { Home, Building2, Sparkles, HardHat, Sofa, ArrowRight, type LucideIcon } from "lucide-react";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
+import HeroBg from "@/components/ui/HeroBg";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 
-const usluge = [
+const usluge: { naziv: string; opis: string; href: string; Ikona: LucideIcon }[] = [
   {
     naziv: "Čišćenje stanova i kuća",
     opis: "Redovno i jednokratno čišćenje stambenih prostora — temeljito, pouzdano, bez stresa.",
     href: "/usluge/ciscenje-stanova-i-kuca",
-    ikona: "🏠",
+    Ikona: Home,
   },
   {
     naziv: "Čišćenje poslovnih prostora",
     opis: "Čisto radno okruženje za vaš tim — fleksibilni termini koji ne ometaju posao.",
     href: "/usluge/ciscenje-poslovnih-prostora",
-    ikona: "🏢",
+    Ikona: Building2,
   },
   {
     naziv: "Generalno i dubinsko čišćenje",
     opis: "Kada redovno čišćenje nije dovoljno — kompletna obnova prostora od poda do plafona.",
     href: "/usluge/generalno-i-dubinsko-ciscenje",
-    ikona: "✨",
+    Ikona: Sparkles,
   },
   {
     naziv: "Čišćenje nakon renoviranja",
     opis: "Prašina, boja, malter — uklanjamo sve što ostaje nakon radova. Prostor spreman za useljenje.",
     href: "/usluge/ciscenje-nakon-renoviranja",
-    ikona: "🔨",
+    Ikona: HardHat,
   },
   {
     naziv: "Dubinsko pranje tepiha i namještaja",
     opis: "Ručno dubinsko pranje tepiha, sofa i tapaciranog namještaja — bez mašina, bez kompromisa.",
     href: "/usluge/dubinsko-pranje-tepisa",
-    ikona: "🛋️",
+    Ikona: Sofa,
   },
 ];
 
@@ -68,27 +70,9 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════
           HERO — tamna pozadina, animirani krugovi
       ═══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] min-h-screen flex flex-col justify-center pt-40 pb-20 md:pb-24">
+      <section className="relative bg-[var(--color-primary)] min-h-[100svh] flex flex-col justify-center pt-24 sm:pt-28 pb-16 sm:pb-20 md:pb-24">
 
-        {/* Animirani krugovi — izolovani od overflow */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div
-            className="absolute bottom-[-5rem] left-[8%] w-[560px] h-[560px] rounded-full bg-[var(--color-secondary)] opacity-55 blur-2xl"
-            style={{
-              boxShadow: "0 0 140px 60px rgba(26,86,176,0.40)",
-              animation: "blob-drift 13s ease-in-out infinite",
-              willChange: "transform",
-            }}
-          />
-          <div
-            className="absolute bottom-[-9rem] left-[38%] w-[680px] h-[680px] rounded-full bg-[#2563EB] opacity-40 blur-2xl"
-            style={{
-              boxShadow: "0 0 180px 80px rgba(37,99,235,0.30)",
-              animation: "blob-drift-alt 18s ease-in-out infinite",
-              willChange: "transform",
-            }}
-          />
-        </div>
+        <HeroBg />
 
         {/* Sadržaj */}
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 w-full">
@@ -98,7 +82,7 @@ export default function HomePage() {
             Prijedor i regija
           </span>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 md:mb-10">
             Profesionalno čišćenje<br />koje ne trebaš provjeravati
           </h1>
 
@@ -212,14 +196,14 @@ export default function HomePage() {
                   hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(10,45,110,0.13)] hover:border-[var(--color-primary)]/20
                   active:translate-y-0 active:shadow-[0_2px_8px_rgba(10,45,110,0.08)] active:scale-[0.99]"
               >
-                <span className="w-10 h-10 flex items-center justify-center bg-[var(--color-bg-alt)] text-[var(--color-accent)] rounded-[var(--radius-lg)] text-lg group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-200 flex-shrink-0">
-                  {usluga.ikona}
+                <span className="w-10 h-10 flex items-center justify-center bg-[var(--color-bg-alt)] text-[var(--color-accent)] rounded-[var(--radius-lg)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-200 flex-shrink-0">
+                  <usluga.Ikona size={20} />
                 </span>
                 <h3 className="text-sm font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors leading-snug flex-1">
                   {usluga.naziv}
                 </h3>
-                <span className="text-xs font-semibold text-[var(--color-muted)] group-hover:text-[var(--color-primary)] transition-colors mt-auto">
-                  Saznaj više →
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--color-muted)] group-hover:text-[var(--color-primary)] transition-colors mt-auto">
+                  Saznaj više <ArrowRight size={12} />
                 </span>
               </Link>
             ))}
@@ -232,8 +216,8 @@ export default function HomePage() {
                 hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(10,45,110,0.40)] hover:bg-[var(--color-primary-hover)]
                 active:translate-y-0 active:shadow-[0_2px_8px_rgba(10,45,110,0.20)] active:scale-[0.99]"
             >
-              <span className="w-10 h-10 flex items-center justify-center bg-white/10 text-white rounded-[var(--radius-lg)] text-lg flex-shrink-0">
-                →
+              <span className="w-10 h-10 flex items-center justify-center bg-white/10 text-white rounded-[var(--radius-lg)] flex-shrink-0">
+                <ArrowRight size={20} />
               </span>
               <div className="flex flex-col gap-1 mt-auto">
                 <h3 className="text-sm font-semibold text-white leading-snug">
@@ -249,14 +233,27 @@ export default function HomePage() {
         </div>
 
         {/* Prijelaz → tamna, lijeva krivina */}
-        <CurveLeft fill="#0A2D6E" />
+        <CurveLeft fill="#0A2D6E" stroke="transparent" />
       </section>
 
 
       {/* ═══════════════════════════════════════════
           CTA BANNER — tamna sekcija
       ═══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] pt-24 md:pt-28 pb-24 md:pb-28">
+      <section className="relative bg-[var(--color-primary)] pt-24 md:pt-28 pb-24 md:pb-28 mt-[-2px]">
+
+        {/* Fade overlay — prikriva spoj s krivinom iznad */}
+        <div
+          className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+          style={{ background: "linear-gradient(180deg, #0A2D6E 0%, transparent 100%)" }}
+          aria-hidden="true"
+        />
+
+        {/* Statični gradijent — blur krugovi */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute bottom-[-4rem] left-[5%] w-[500px] h-[500px] rounded-full bg-[var(--color-secondary)] opacity-45 blur-2xl" />
+          <div className="absolute bottom-[-7rem] left-[38%] w-[620px] h-[620px] rounded-full bg-[#2563EB] opacity-30 blur-2xl" />
+        </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
           <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Kontakt</p>
@@ -317,7 +314,7 @@ export default function HomePage() {
         </div>
 
         {/* Prijelaz → footer (tamna), lijeva krivina */}
-        <CurveLeft fill="#0A2D6E" />
+        <CurveLeft fill="#0A2D6E" stroke="transparent" />
       </section>
 
     </>

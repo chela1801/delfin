@@ -24,52 +24,41 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none">
+    <header className="fixed top-3 left-0 right-0 z-[60] pointer-events-none">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* Jedan red — logo | nav notch | CTA */}
-        <div className="flex items-center justify-between pt-5 pb-4">
+        {/* Jedan notch — logo | nav | CTA */}
+        <div className="pointer-events-auto flex items-center justify-between h-16 px-5
+          bg-[var(--color-primary)]/90 backdrop-blur-2xl rounded-[var(--radius-xl)]
+          border border-white/10 shadow-lg shadow-[var(--color-primary)]/30">
 
           {/* Logo — nestaje na scrollu */}
-          <div
-            className={`pointer-events-auto transition-all duration-300 ${
-              scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
-          >
+          <div className={`transition-all duration-300 flex-shrink-0 ${
+            scrolled ? "opacity-0 pointer-events-none w-0 overflow-hidden" : "opacity-100"
+          }`}>
             <Link href="/" aria-label="Delfin — početna stranica">
-              <DelfinLogo fill="#ffffff" iconSize={88} textSize="text-2xl" />
+              <DelfinLogo fill="#ffffff" height={38} />
             </Link>
           </div>
 
-          {/* Nav notch — uvijek vidljiv */}
-          <div className="pointer-events-auto inline-flex items-center h-12 px-2
-            bg-[var(--color-primary)]/90 backdrop-blur-2xl rounded-[var(--radius-xl)]
-            border border-white/10 shadow-lg shadow-[var(--color-primary)]/30">
-            <nav className="hidden md:flex items-center gap-0.5" aria-label="Glavna navigacija">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="px-4 py-1.5 text-sm font-medium text-white/55 hover:text-white hover:bg-white/10 rounded-full transition-all"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="md:hidden">
-              <MobileMenu />
-            </div>
-          </div>
+          {/* Nav linkovi — uvijek vidljivi, desktop */}
+          <nav className="hidden md:flex items-center gap-0.5 mx-auto" aria-label="Glavna navigacija">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-4 py-1.5 text-sm font-medium text-white/55 hover:text-white hover:bg-white/10 rounded-full transition-all"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-          {/* CTA dugmad — nestaju na scrollu */}
-          <div
-            className={`hidden md:flex items-center gap-3 pointer-events-auto transition-all duration-300 ${
-              scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
-          >
+          {/* CTA — uvijek vidljiv, desktop */}
+          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
             <Link
               href="/firme"
-              className="text-sm font-medium text-white/50 hover:text-white/90 transition-colors"
+              className="text-sm font-medium text-white/50 hover:text-white/90 transition-colors whitespace-nowrap"
             >
               Za firme
             </Link>
@@ -77,13 +66,18 @@ export default function Header() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[#4A5568] text-white text-sm font-semibold rounded-full transition-all duration-150
+              className="px-4 py-1.5 bg-[#4A5568] text-white text-sm font-semibold rounded-full transition-all duration-150
                 shadow-[0_2px_10px_rgba(74,85,104,0.40)]
                 hover:-translate-y-0.5 hover:bg-[#3a4255] hover:shadow-[0_4px_16px_rgba(74,85,104,0.55)]
-                active:translate-y-0 active:scale-[0.98]"
+                active:translate-y-0 active:scale-[0.98] whitespace-nowrap"
             >
               Kontaktiraj nas
             </a>
+          </div>
+
+          {/* Mobilni meni */}
+          <div className="md:hidden">
+            <MobileMenu />
           </div>
 
         </div>

@@ -151,6 +151,110 @@
   33%       { transform: translate(45px, -45px)  scale(1.08); }
   66%       { transform: translate(-30px, 30px)  scale(0.94); }
 }
+@keyframes pulse-rise {
+  0%   { transform: translateY(0px)    scale(0.85); opacity: 0;    }
+  12%  { opacity: 0.32; }
+  70%  { opacity: 0.12; }
+  100% { transform: translateY(-240px) scale(1.50); opacity: 0;    }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE NAV — Staggered meni
+═══════════════════════════════════════════ */
+.delfin-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.delfin-nav-layer,
+.delfin-nav-panel {
+  position: absolute;
+  inset: 0;
+  transform: translateX(100%);
+}
+
+.delfin-nav-layer {
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.delfin-nav-layer-1 {
+  background: #1A56B0;
+  z-index: 1;
+  transition-delay: 110ms; /* zatvara se posljednji */
+}
+.delfin-nav-layer-2 {
+  background: #091F4F;
+  z-index: 2;
+  transition-delay: 55ms;
+}
+.delfin-nav-panel {
+  background: #0A2D6E;
+  z-index: 3;
+  transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: 0ms; /* zatvara se prvi */
+  pointer-events: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Otvaranje — staggered ulaz */
+.delfin-nav-overlay[data-open] .delfin-nav-layer-1 {
+  transform: translateX(0);
+  transition-delay: 0ms;
+}
+.delfin-nav-overlay[data-open] .delfin-nav-layer-2 {
+  transform: translateX(0);
+  transition-delay: 65ms;
+}
+.delfin-nav-overlay[data-open] .delfin-nav-panel {
+  transform: translateX(0);
+  transition-delay: 130ms;
+  pointer-events: auto;
+}
+
+/* Stavke — slide-up animacija */
+.delfin-nav-item-wrap {
+  overflow: hidden;
+  line-height: 1;
+}
+.delfin-nav-item-label {
+  display: block;
+  transform: translateY(115%) rotate(7deg);
+  transform-origin: 0 100%;
+}
+.delfin-nav-overlay[data-open] .delfin-nav-item-label {
+  animation: delfinItemIn 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: var(--d, 250ms);
+}
+@keyframes delfinItemIn {
+  to { transform: translateY(0) rotate(0deg); }
+}
+
+/* Broj stavke — fade in */
+.delfin-nav-num {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transition-delay: 0ms;
+}
+.delfin-nav-overlay[data-open] .delfin-nav-num {
+  opacity: 1;
+  transition-delay: var(--d, 250ms);
+}
+
+/* Footer CTA — fade + lift */
+.delfin-nav-footer {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: 0ms;
+}
+.delfin-nav-overlay[data-open] .delfin-nav-footer {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 580ms;
+}
 
 /* ═══════════════════════════════════════════
    BASE

@@ -28,7 +28,7 @@ export default function Footer() {
           {/* Brend kolona */}
           <div className="flex flex-col gap-4">
             <Link href="/" aria-label="Delfin — početna stranica">
-              <DelfinLogo fill="#ffffff" iconSize={120} textSize="text-xl" />
+              <DelfinLogo fill="#ffffff" height={58} />
             </Link>
             <p className="text-white/70 text-sm leading-relaxed">
               Profesionalno čišćenje i održavanje objekata u Prijedoru i regiji.

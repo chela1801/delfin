@@ -1,16 +1,22 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CurveRight } from "@/components/ui/Curves";
+import { Home, Building2, Sparkles, HardHat, Sofa, Camera, ChevronLeft, type LucideIcon } from "lucide-react";
+import { CurveRight, CurveLeft } from "@/components/ui/Curves";
+import HeroBg from "@/components/ui/HeroBg";
+import FaqAccordion from "@/components/ui/FaqAccordion";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 
-const usluge = [
+const usluge: {
+  slug: string; naziv: string; podnaslov: string; za: string; Ikona: LucideIcon;
+  stavke: string[]; faq: { q: string; a: string }[]; cta: { naslov: string; tekst: string };
+}[] = [
   {
     slug: "ciscenje-stanova-i-kuca",
     naziv: "Čišćenje stanova i kuća",
     podnaslov: "Temeljito, pouzdano i bez stresa — dolazimo opremljeni, radimo po protokolu, prostor predajemo spreman.",
     za: "Privatni korisnici",
-    ikona: "🏠",
+    Ikona: Home,
     stavke: [
       "Dnevni boravak i spavaće sobe",
       "Kupatilo i WC — detaljno čišćenje i dezinfekcija",
@@ -35,7 +41,7 @@ const usluge = [
     naziv: "Čišćenje poslovnih prostora",
     podnaslov: "Čisto radno okruženje za vaš tim — dolazimo kad vama odgovara, radimo brzo i pouzdano.",
     za: "Firme i poslovni prostori",
-    ikona: "🏢",
+    Ikona: Building2,
     stavke: [
       "Kancelarije i sale za sastanke",
       "Hodnici i zajednički prostori",
@@ -60,7 +66,7 @@ const usluge = [
     naziv: "Generalno i dubinsko čišćenje",
     podnaslov: "Kada redovno čišćenje nije dovoljno — kompletna obnova prostora od poda do plafona.",
     za: "Stanovi, kuće, poslovni prostori",
-    ikona: "✨",
+    Ikona: Sparkles,
     stavke: [
       "Kompletno čišćenje po protokolu — prostorija po prostorija",
       "Teško dostupna mjesta — iza namještaja, plafoni, uglovi",
@@ -85,7 +91,7 @@ const usluge = [
     naziv: "Čišćenje nakon renoviranja",
     podnaslov: "Prašina, boja, malter — uklanjamo sve što ostaje nakon radova. Prostor spreman za useljenje.",
     za: "Stanovi i kuće nakon radova",
-    ikona: "🔨",
+    Ikona: HardHat,
     stavke: [
       "Uklanjanje građevinske prašine sa svih površina",
       "Čišćenje ostataka boje, maltera i ljepila",
@@ -110,7 +116,7 @@ const usluge = [
     naziv: "Dubinsko pranje tepiha i namještaja",
     podnaslov: "Ručno dubinsko pranje tepiha, sofa i tapaciranog namještaja — bez mašina, bez kompromisa.",
     za: "Privatni korisnici i firme",
-    ikona: "🛋️",
+    Ikona: Sofa,
     stavke: [
       "Tepisi i kilimi — ručno pranje s profesionalnim sredstvima",
       "Sofe i fotelje — ekstrakcija prljavštine iz vlakana",
@@ -135,7 +141,7 @@ const usluge = [
 function FotoPlaceholder() {
   return (
     <div className="w-full aspect-[16/9] bg-[var(--color-bg-alt)] border-2 border-dashed border-[var(--color-border)] rounded-[var(--radius-xl)] flex flex-col items-center justify-center gap-2">
-      <span className="text-3xl opacity-20">📷</span>
+      <Camera size={32} className="opacity-20 text-[var(--color-muted)]" />
       <span className="text-sm text-[var(--color-muted)] font-medium">Fotografija s terena</span>
     </div>
   );
@@ -171,23 +177,17 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
     <>
 
       {/* ═══ HERO ═══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] pt-32 pb-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
-          <nav className="text-sm text-white/40 mb-6 flex items-center gap-2">
-            <Link href="/" className="hover:text-white/70 transition-colors">Početna</Link>
-            <span>/</span>
-            <Link href="/usluge" className="hover:text-white/70 transition-colors">Usluge</Link>
-            <span>/</span>
-            <span className="text-white/70">{usluga.naziv}</span>
-          </nav>
+        <HeroBg />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="max-w-xl flex flex-col gap-4">
               <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 text-white/80 text-xs font-semibold rounded-full w-fit">
                 {usluga.za}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
                 {usluga.naziv} u Prijedoru
               </h1>
               <p className="text-lg text-white/60 leading-relaxed">
@@ -196,7 +196,7 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
             </div>
 
             {/* Mobile CTA */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -217,7 +217,7 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
 
 
       {/* ═══ SADRŽAJ — 2 kolone ══════════════════════════════ */}
-      <section className="bg-white pt-14 pb-24">
+      <section className="relative bg-white pt-14 pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-10">
 
@@ -273,37 +273,30 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
                 <h2 className="text-2xl font-bold text-[var(--color-text)] tracking-tight">
                   Često postavljana pitanja
                 </h2>
-                <div className="flex flex-col gap-3">
-                  {usluga.faq.map((item) => (
-                    <div
-                      key={item.q}
-                      className="p-5 border border-[var(--color-border)] rounded-[var(--radius-xl)]
-                        shadow-[0_2px_12px_rgba(10,45,110,0.05)]"
-                    >
-                      <p className="font-semibold text-[var(--color-text)] mb-2">{item.q}</p>
-                      <p className="text-sm text-[var(--color-muted)] leading-relaxed">{item.a}</p>
-                    </div>
-                  ))}
-                </div>
+                <FaqAccordion items={usluga.faq} />
               </div>
 
-              {/* Link natrag */}
+              {/* Dugme natrag */}
               <Link
                 href="/usluge"
-                className="self-start text-sm text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors font-medium"
+                className="self-start inline-flex items-center gap-2 px-5 py-2.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+                  shadow-[0_4px_14px_rgba(74,85,104,0.30)]
+                  hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(74,85,104,0.48)] hover:bg-[#3a4255]
+                  active:translate-y-0 active:scale-[0.98]"
               >
-                ← Sve usluge
+                <ChevronLeft size={16} />
+                Sve usluge
               </Link>
 
             </div>
 
             {/* Desna kolona — sticky CTA kartica */}
             <div className="hidden lg:block w-72 flex-shrink-0">
-              <div className="sticky top-24 flex flex-col gap-5 p-6 border border-[var(--color-border)] rounded-[var(--radius-xl)]
+              <div className="group sticky top-24 flex flex-col gap-5 p-6 border border-[var(--color-border)] rounded-[var(--radius-xl)]
                 shadow-[0_4px_24px_rgba(10,45,110,0.10)]">
 
-                <div className="w-11 h-11 flex items-center justify-center bg-[var(--color-bg-alt)] rounded-[var(--radius-lg)] text-xl">
-                  {usluga.ikona}
+                <div className="w-11 h-11 flex items-center justify-center bg-[var(--color-bg-alt)] text-[var(--color-accent)] rounded-[var(--radius-lg)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-200">
+                  <usluga.Ikona size={22} />
                 </div>
 
                 <div>
@@ -346,12 +339,31 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
 
           </div>
         </div>
+
+        <CurveLeft fill="#0A2D6E" stroke="transparent" />
       </section>
 
 
       {/* ═══ BOTTOM CTA ══════════════════════════════════════ */}
-      <section className="bg-[var(--color-primary)] py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
+      <section className="relative bg-[var(--color-primary)] pt-16 md:pt-24 pb-20 md:pb-28 mt-[-2px] overflow-hidden">
+
+        {/* Fade overlay — maskira spoj sa curve-om iz prethodne sekcije */}
+        <div
+          className="absolute top-0 left-0 right-0 h-40 pointer-events-none z-10"
+          style={{ background: "linear-gradient(180deg, #0A2D6E 0%, transparent 100%)" }}
+        />
+
+        {/* Statični blur krugovi na dnu */}
+        <div className="absolute bottom-[-4rem] left-[15%] w-[420px] h-[420px] rounded-full bg-[var(--color-secondary)] opacity-40 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-7rem] left-[50%] w-[500px] h-[500px] rounded-full bg-[#2563EB] opacity-30 blur-3xl pointer-events-none" />
+
+        {/* Bottom fade — maskira prelaz ka footeru */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-10"
+          style={{ background: "linear-gradient(0deg, #0A2D6E 0%, transparent 100%)" }}
+        />
+
+        <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
           <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
             {usluga.cta.naslov}
           </h2>
