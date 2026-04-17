@@ -85,7 +85,7 @@ export default function MobileMenu() {
           <div className="delfin-nav-inner flex flex-col flex-1">
           <ul className="flex flex-col gap-1 flex-1 px-6 pt-6" role="list">
             {navLinks.map((link, idx) => {
-              const delay = `${200 + idx * 80}ms`;
+              const delay = `${320 + idx * 80}ms`;
               return (
                 <li key={link.href} className="delfin-nav-item-wrap">
                   <Link
