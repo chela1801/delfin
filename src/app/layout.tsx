@@ -12,6 +12,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://delfin-amber.vercel.app"),
   title: "Delfin — Agencija za profesionalno čišćenje Prijedor",
   description:
     "Profesionalno čišćenje i održavanje objekata u Prijedoru. Čišćenje stanova, kuća i poslovnih prostora, dubinsko pranje tepiha i namještaja.",
@@ -28,6 +29,11 @@ export const metadata: Metadata = {
       "Profesionalno čišćenje i održavanje objekata u Prijedoru. Čišćenje stanova, kuća i poslovnih prostora.",
     locale: "sr_BA",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
   },
 };
 
