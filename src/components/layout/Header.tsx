@@ -32,10 +32,8 @@ export default function Header() {
           bg-[var(--color-primary)]/90 backdrop-blur-2xl rounded-[var(--radius-xl)]
           border border-white/10 shadow-lg shadow-[var(--color-primary)]/30">
 
-          {/* Logo — nestaje na scrollu */}
-          <div className={`transition-all duration-300 flex-shrink-0 ${
-            scrolled ? "opacity-0 pointer-events-none w-0 overflow-hidden" : "opacity-100"
-          }`}>
+          {/* Logo — uvijek vidljiv */}
+          <div className="flex-shrink-0">
             <Link href="/" aria-label="Delfin — početna stranica">
               <DelfinLogo fill="#ffffff" height={38} />
             </Link>
