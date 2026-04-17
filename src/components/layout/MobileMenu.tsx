@@ -18,6 +18,7 @@ const WHATSAPP_URL = "https://wa.me/38766246346";
 
 export default function MobileMenu() {
   const [open, setOpen]       = useState(false);
+  const [closing, setClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
@@ -43,10 +44,22 @@ export default function MobileMenu() {
     };
   }, [open]);
 
-  const close = () => setOpen(false);
+  // Sadržaj se fade-uje 200ms, onda panel + slojevi izađu zajedno
+  const close = () => {
+    setClosing(true);
+    setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+    }, 200);
+  };
 
   const overlay = (
-    <div className="delfin-nav-overlay" data-open={open || undefined} aria-hidden={!open}>
+    <div
+        className="delfin-nav-overlay"
+        data-open={open || undefined}
+        data-closing={closing || undefined}
+        aria-hidden={!open}
+      >
 
       <div className="delfin-nav-layer delfin-nav-layer-1" />
       <div className="delfin-nav-layer delfin-nav-layer-2" />
@@ -68,7 +81,8 @@ export default function MobileMenu() {
             </button>
           </div>
 
-          {/* Nav stavke */}
+          {/* Nav stavke + CTA — fade wrapper za smooth close */}
+          <div className="delfin-nav-inner flex flex-col flex-1">
           <ul className="flex flex-col gap-1 flex-1 px-6 pt-6" role="list">
             {navLinks.map((link, idx) => {
               const delay = `${200 + idx * 80}ms`;
@@ -115,6 +129,7 @@ export default function MobileMenu() {
             </a>
             <p className="text-xs text-white/25 text-center">Prijedor i regija</p>
           </div>
+          </div>{/* /delfin-nav-inner */}
 
         </div>
       </nav>

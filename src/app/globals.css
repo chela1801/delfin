@@ -177,23 +177,23 @@
 }
 
 .delfin-nav-layer {
-  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 1, 1);
 }
 .delfin-nav-layer-1 {
   background: #1A56B0;
   z-index: 1;
-  transition-delay: 110ms; /* zatvara se posljednji */
+  transition-delay: 0ms;
 }
 .delfin-nav-layer-2 {
   background: #091F4F;
   z-index: 2;
-  transition-delay: 55ms;
+  transition-delay: 0ms;
 }
 .delfin-nav-panel {
   background: #0A2D6E;
   z-index: 3;
-  transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
-  transition-delay: 0ms; /* zatvara se prvi */
+  transition: transform 0.45s cubic-bezier(0.4, 0, 1, 1);
+  transition-delay: 0ms;
   pointer-events: none;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -202,16 +202,27 @@
 /* Otvaranje — staggered ulaz */
 .delfin-nav-overlay[data-open] .delfin-nav-layer-1 {
   transform: translateX(0);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
   transition-delay: 0ms;
 }
 .delfin-nav-overlay[data-open] .delfin-nav-layer-2 {
   transform: translateX(0);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
   transition-delay: 65ms;
 }
 .delfin-nav-overlay[data-open] .delfin-nav-panel {
   transform: translateX(0);
+  transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
   transition-delay: 130ms;
   pointer-events: auto;
+}
+
+/* Zatvaranje — sadržaj fade, pa sve izlazi zajedno */
+.delfin-nav-inner {
+  transition: opacity 0.18s ease;
+}
+.delfin-nav-overlay[data-closing] .delfin-nav-inner {
+  opacity: 0;
 }
 
 /* Stavke — slide-up animacija */
