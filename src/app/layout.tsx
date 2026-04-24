@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ContactModalProvider } from "@/components/ui/ContactModal";
 import CookieBanner from "@/components/ui/CookieBanner";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -90,7 +91,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
         <ContactModalProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <ScrollReveal />
+            {children}
+          </main>
           <Footer />
           <CookieBanner />
         </ContactModalProvider>
