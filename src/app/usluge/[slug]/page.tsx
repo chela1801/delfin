@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Home, Building2, Sparkles, HardHat, Sofa, Camera, ChevronLeft, type LucideIcon } from "lucide-react";
+import { Home, Building2, Sparkles, HardHat, Sofa, Forklift, Camera, ChevronLeft, type LucideIcon } from "lucide-react";
+import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
 import FaqAccordion from "@/components/ui/FaqAccordion";
@@ -14,126 +15,152 @@ const usluge: {
   {
     slug: "ciscenje-stanova-i-kuca",
     naziv: "Čišćenje stanova i kuća",
-    podnaslov: "Temeljito, pouzdano i bez stresa — dolazimo opremljeni, radimo po protokolu, prostor predajemo spreman.",
+    podnaslov: "Dolazimo s opremom i protokolom, radimo od vrha do dna — ti ne moraš brinuti ni o čemu. Predajemo ti prostor spreman.",
     za: "Privatni korisnici",
     Ikona: Home,
     stavke: [
-      "Dnevni boravak i spavaće sobe",
-      "Kupatilo i WC — detaljno čišćenje i dezinfekcija",
-      "Kuhinja — površine, uređaji, sudopera",
-      "Podovi — usisavanje i pranje",
-      "Prozori iznutra",
-      "Prašina sa svih dostupnih površina",
+      "Dnevni boravak i spavaće sobe — prašina, podovi, površine",
+      "Kupatilo i toalet — detaljno čišćenje, dezinfekcija i potpuna higijena",
+      "Kuhinja — površine, uređaji, sudopera, pločice",
+      "Podovi — usisavanje i pranje svih vrsta podloga",
+      "Prozori iznutra i okviri",
+      "Prašina sa svih dostupnih površina i kutova",
     ],
     faq: [
-      { q: "Koliko košta čišćenje stana?", a: "Cijena zavisi od veličine i stanja prostora. Kontaktiraj nas za okvirnu procjenu — odgovaramo brzo." },
-      { q: "Da li trebam biti kod kuće?", a: "Ne mora. Mnogi klijenti nam ostave ključeve. Sve je osigurano i odgovorni smo za prostor." },
-      { q: "Koja sredstva koristite?", a: "Koristimo profesionalna sredstva koja su sigurna za stanare, djecu i kućne ljubimce." },
-      { q: "Radite li vikendom?", a: "Da, radimo subotom. Termine dogovaramo individualno prema vašim potrebama." },
+      { q: "Koliko košta čišćenje stana?", a: "Cijena zavisi od veličine i stanja prostora — stan od 50m² i stan od 50m² koji nije čišćen godinu dana nisu isti posao. Pošalji nam opis ili par fotografija i dajemo ti okvirnu cijenu odmah." },
+      { q: "Da li trebam biti kod kuće?", a: "Ne moraš. Velik broj klijenata nam ostavi ključeve — dolazimo, uradimo posao, zaključamo. Prostor ti predamo onako kako smo ga preuzeli, plus čist." },
+      { q: "Koja sredstva koristite?", a: "Koristimo isključivo provjerena profesionalna sredstva — efikasna za čišćenje, a sigurna za stanare, djecu i kućne ljubimce. Dolazimo s vlastitom opremom." },
+      { q: "Radite li vikendom?", a: "Da, radimo subotom. Termine dogovaramo individualno — ako ti odgovara jutro u srijedu ili veče u petak, prilagodimo se." },
     ],
     cta: {
-      naslov: "Spreman za čist stan bez napora?",
+      naslov: "Čist stan bez da podigneš prst.",
       tekst: "Jedan WhatsApp i dogovoreno je. Dolazimo u Prijedor i okolinu.",
     },
   },
   {
     slug: "ciscenje-poslovnih-prostora",
     naziv: "Čišćenje poslovnih prostora",
-    podnaslov: "Čisto radno okruženje za vaš tim — dolazimo kad vama odgovara, radimo brzo i pouzdano.",
+    podnaslov: "Fleksibilni termini koji ne ometaju rad — jutro, veče ili vikend. Tim koji dolazi, uradi posao i ne smeta.",
     za: "Firme i poslovni prostori",
     Ikona: Building2,
     stavke: [
-      "Kancelarije i sale za sastanke",
-      "Hodnici i zajednički prostori",
-      "Sanitarni čvorovi — dezinfekcija i čišćenje",
-      "Podovi — usisavanje i pranje",
-      "Radne površine i oprema",
-      "Kuhinjski kutić i aparat za kafu",
+      "Kancelarije i sale za sastanke — radne površine, podovi, stakla",
+      "Hodnici, ulazi i zajednički prostori",
+      "Sanitarni čvorovi — dezinfekcija i potpuno čišćenje",
+      "Podovi — usisavanje i pranje svih vrsta podloga",
+      "Radne površine, monitori i uredska oprema",
+      "Kuhinjski kutić, aparat za kafu i hladnjak",
     ],
     faq: [
-      { q: "Radite li van radnog vremena?", a: "Da — jutro, veče ili vikend. Čišćenje planiramo tako da ne ometa rad vaše firme." },
-      { q: "Da li potpisujete ugovor?", a: "Da, za svaki redovni servis potpisujemo ugovor s jasnim terminima, scope-om i cijenom." },
-      { q: "Možete li izdat fakturu?", a: "Naravno. Faktura, ugovor i sva potrebna dokumentacija su standard za poslovne klijente." },
-      { q: "Šta ako nismo zadovoljni?", a: "Javite nam odmah — vraćamo se i rješavamo bez dodatnih troškova. To je naša garancija." },
+      { q: "Radite li van radnog vremena?", a: "Da — jutro, veče ili vikend. Čišćenje planiramo tako da vaš tim ni ne primijeti da smo bili." },
+      { q: "Da li potpisujete ugovor?", a: "Da, za svaki redovni servis potpisujemo ugovor s jasno definisanim terminima, scopeom i cijenom. Bez iznenađenja." },
+      { q: "Možete li izdat fakturu?", a: "Naravno. Faktura, ugovor i sva potrebna dokumentacija su standard za sve poslovne klijente — bez dogovora." },
+      { q: "Šta ako nismo zadovoljni?", a: "Javite nam odmah — vraćamo se i rješavamo bez dodatnih troškova ili rasprava. To je naša jedina garancija." },
     ],
     cta: {
-      naslov: "Čisto radno mjesto, produktivan tim.",
-      tekst: "Kontaktirajte nas za bezobaveznu procjenu prostora i ponudu.",
+      naslov: "Čisto radno mjesto, produktivniji tim.",
+      tekst: "Kontaktirajte nas za bezobaveznu procjenu prostora i pisanu ponudu.",
     },
   },
   {
     slug: "generalno-i-dubinsko-ciscenje",
     naziv: "Generalno i dubinsko čišćenje",
-    podnaslov: "Kada redovno čišćenje nije dovoljno — kompletna obnova prostora od poda do plafona.",
+    podnaslov: "Kompletna obnova prostora — od iza frižidera do plafona. Za kad se to mora uraditi kako treba, jednom i zauvijek.",
     za: "Stanovi, kuće, poslovni prostori",
     Ikona: Sparkles,
     stavke: [
-      "Kompletno čišćenje po protokolu — prostorija po prostorija",
-      "Teško dostupna mjesta — iza namještaja, plafoni, uglovi",
-      "Dezinfekcija svih površina",
-      "Dubinsko čišćenje kuhinje i kupaonice",
-      "Čišćenje unutrašnjosti kuhinjskih elemenata",
-      "Prozori iznutra i okviri",
+      "Kompletno čišćenje po protokolu — prostorija po prostorija, bez preskakanja",
+      "Teško dostupna mjesta — iza i ispod namještaja, plafoni, uglovi",
+      "Dezinfekcija i higijenizacija svih površina — kvake, prekidači, okviri",
+      "Dubinsko čišćenje kuhinje — rešetke, nape, unutrašnjost elemenata",
+      "Kupatilo i toalet — vapnenac, fuge, sanitarije od nule",
+      "Čišćenje suhom parom — bez hemikalija, sigurno za djecu, alergičare i kućne ljubimce",
+      "Prozori iznutra, okviri i police",
     ],
     faq: [
-      { q: "Koliko traje generalno čišćenje?", a: "Ovisno o veličini prostora — stan od 60m² tipično traje 3–5 sati s timom od 2 osobe." },
-      { q: "Koliko često je preporučeno?", a: "Jednom sezonski ili minimalno dva puta godišnje za održavanje prostora u odličnom stanju." },
-      { q: "Je li potrebno skloniti stvari?", a: "Sitne predmete i vrijedne stvari preporučamo skloniti. Namještaj ne trebate pomjerati." },
-      { q: "Radite li vikend termine?", a: "Da. Generalna čišćenja najčešće zakazujemo subotom — dogovaramo prema vašem rasporedu." },
+      { q: "Koliko traje generalno čišćenje?", a: "Stan od 60m² tipično traje 3–5 sati s timom od 2 osobe. Za veće prostore ili jako zapuštene stanove možemo i u dva navrata — procjenjujemo pri dogovoru." },
+      { q: "Koliko često je preporučeno?", a: "Jednom sezonski (4x godišnje) je ideal. Minimalno dva puta godišnje ako imaš redovno čišćenje između. Jednom godišnje ako ne čistiš redovno." },
+      { q: "Je li potrebno skloniti stvari?", a: "Sitne predmete i vrijednosti preporučamo skloniti. Namještaj ne trebaš pomjerati — mi radimo oko njega i gdje god možemo pristupiti." },
+      { q: "Radite li vikend termine?", a: "Da. Generalna čišćenja najčešće zakazujemo subotom — ali dogovaramo prema tvojem rasporedu, ne prema našem." },
     ],
     cta: {
-      naslov: "Prostor koji diše od čistoće.",
-      tekst: "Rezerviši termin — javljamo se brzo s procjenom.",
+      naslov: "Jednom temeljito. Dugo čisto.",
+      tekst: "Javi nam se s opisom prostora — dajemo procjenu odmah.",
     },
   },
   {
     slug: "ciscenje-nakon-renoviranja",
     naziv: "Čišćenje nakon renoviranja",
-    podnaslov: "Prašina, boja, malter — uklanjamo sve što ostaje nakon radova. Prostor spreman za useljenje.",
-    za: "Stanovi i kuće nakon radova",
+    podnaslov: "Nakon majstora dolazi naš tim. Građevinska prašina, ostaci boje i maltera — uklanjamo sve dok prostor ne bude spreman za život.",
+    za: "Stanovi, kuće i poslovni prostori",
     Ikona: HardHat,
     stavke: [
-      "Uklanjanje građevinske prašine sa svih površina",
-      "Čišćenje ostataka boje, maltera i ljepila",
-      "Pranje podova i finalno poliranje",
-      "Čišćenje prozora i okvira",
-      "Sanitarni čvorovi — dezinfekcija i priprema za korištenje",
-      "Kuhinja — priprema za spajanje uređaja",
+      "Građevinska prašina — sa svih površina, zidova, plafona i podova",
+      "Ostaci boje, maltera, ljepila i silikona sa pločica i stakla",
+      "Prozori i okviri — čišćenje nakon obrade zidova",
+      "Podovi — temeljno pranje svih vrsta podloga, bez ogrebotina",
+      "Sanitarni čvorovi — dezinfekcija i higijenska priprema za svakodnevnu upotrebu",
+      "Kuhinja i ugrađeni elementi — čišćenje iznutra i izvana prije spajanja uređaja",
     ],
     faq: [
-      { q: "Kada se može raditi čišćenje nakon renoviranja?", a: "Čim su završeni radovi i prostor je oslobođen — dolazimo u roku od 24–48 sati od dogovora." },
-      { q: "Koliko traje?", a: "Ovisno o obimu radova i kvadraturi — tipično jednog dana za prosječan stan." },
-      { q: "Je li jedno čišćenje dovoljno?", a: "Za većinu prostora da. Kod velikih renoviranja može biti potreban drugi prolaz — procjenjujemo na licu mjesta." },
-      { q: "Dolazite li i za poslovne prostore?", a: "Da, radimo i uredska i komercijalna postrojenja nakon renoviranja." },
+      { q: "Kada možemo zakazati čišćenje?", a: "Čim su završeni radovi — ne moraš čekati. Dogovaramo termin 24–48 sati unaprijed. Ako se majstori kasne, termin pomjeramo bez problema." },
+      { q: "Koliko dugo traje?", a: "Stan od 60m² s prosječnim opsegom renoviranja — tipično 4–6 sati s timom od 2 osobe. Za kompletnu rekonstrukciju s više prostorija možemo u dva navrata." },
+      { q: "Je li jedno čišćenje dovoljno?", a: "Za većinu slučajeva da. Kod rekonstrukcija s puno rezanja ili bušenja u prašnjavom materijalu, preporučamo provjeru dan-dva nakon prvog prolaza — gruba prašina se slegne. Procjenjujemo pri dogovoru." },
+      { q: "Radite li i za poslovne prostore?", a: "Da — uredi, prodajni prostori, objekti svih veličina. Faktura i ugovor su standard." },
     ],
     cta: {
-      naslov: "Spreman za useljenje za 24 sata.",
-      tekst: "Javi nam se odmah čim završe radovi — dolazimo brzo.",
+      naslov: "Prostor spreman za useljenje. Ti se samo useliš.",
+      tekst: "Javi nam se čim završe radovi — dogovaramo u roku od par sati.",
+    },
+  },
+  {
+    slug: "dizalica-i-pranje-fasada",
+    naziv: "Dizalica — pranje fasada i visinski radovi",
+    podnaslov: "Dosežemo do 25 metara visine — pranje fasada, čišćenje staklenih površina i održavanje zelenih površina na visini. Dizalica dostupna i za najam.",
+    za: "Firme i privatni korisnici",
+    Ikona: Forklift,
+    stavke: [
+      "Pranje fasada do 25 metara visine — temeljito, bez skela i rizika",
+      "Čišćenje staklenih površina, prozora i obloga na visini",
+      "Uklanjanje mahovine, algi i naslaga s fasada i krovnih površina",
+      "Održavanje zelenih površina — rezidba drveća i živica na visini",
+      "Primjena profesionalnih sredstava prilagođenih vrsti fasadnog materijala",
+      "Iznajmljivanje dizalice — s operaterom ili bez, po dogovoru",
+    ],
+    faq: [
+      { q: "Kolika je maksimalna visina?", a: "Naša dizalica doseže do 25 metara. To je dovoljno za stambene zgrade, poslovne objekte i visoke fasade u Prijedoru i regiji." },
+      { q: "Mogu li iznajmiti dizalicu bez vaše ekipe?", a: "Da — dizalica je dostupna za najam s operaterom ili bez njega, ovisno o vašim potrebama i obavezama. Kontaktirajte nas za slobodne termine." },
+      { q: "Radite li na svim vrstama fasada?", a: "Da — fasadna obloga, cigla, kamen, staklo, žbuka, kompozitni paneli. Prilagođavamo sredstvo i metodu prema materijalu kako ne bismo oštetili površinu." },
+      { q: "Koliko traje pranje fasade?", a: "Ovisi o veličini objekta i vrsti prljavštine. Manji poslovni objekat tipično jedan radni dan — za veće objekte procjenu dajemo besplatno, na licu mjesta." },
+    ],
+    cta: {
+      naslov: "Visoki radovi — bez kompromisa i skela.",
+      tekst: "Opiši nam objekat i visinu — dajemo procjenu odmah.",
     },
   },
   {
     slug: "dubinsko-pranje-tepisa",
-    naziv: "Dubinsko pranje tepiha i namještaja",
-    podnaslov: "Ručno dubinsko pranje tepiha, sofa i tapaciranog namještaja — bez mašina, bez kompromisa.",
+    naziv: "Dubinsko pranje namještaja i madraca",
+    podnaslov: "Dolazimo s opremom, peremo na licu mjesta — nema transporta, nema logistike. Sofa, madrac ili fotelja — higijenski čisto za jedan dan.",
     za: "Privatni korisnici i firme",
     Ikona: Sofa,
     stavke: [
-      "Tepisi i kilimi — ručno pranje s profesionalnim sredstvima",
-      "Sofe i fotelje — ekstrakcija prljavštine iz vlakana",
-      "Tapacirani namještaj — čišćenje bez oštećenja tkanine",
-      "Uklanjanje mrlja i neugodnih mirisa",
-      "Dezinfekcija i zaštitni premaz (na zahtjev)",
-      "Sušenje i vraćanje na poziciju",
+      "Sofe i fotelje — ekstrakcija prljavštine direktno iz vlakana tkanine",
+      "Madraci — dubinsko pranje i dezinfekcija, uklanjanje grinja i alergena",
+      "Tapacirani namještaj — prilagođena sredstva prema vrsti materijala",
+      "Uklanjanje mrlja — tretman specifičan za vrstu mrlje (mast, vino, kava, urin)",
+      "Neutralizacija neugodnih mirisa — higijenska obnova, ne maskiranje",
+      "Zaštitni premaz protiv mrlja (na zahtjev) i vraćanje na poziciju",
     ],
     faq: [
-      { q: "Koliko dugo treba da se suši?", a: "Tipično 2–4 sata ovisno o debljini tkanine i ventilaciji prostora." },
-      { q: "Možete li ukloniti stare mrlje?", a: "Većinu da — ovisno o vrsti mrlje i tkanini. Procjenjujemo na licu mjesta i budemo iskreni." },
-      { q: "Da li dolazite kući?", a: "Da, dolazimo s kompletnom opremom — nema potrebe da transportujete tepih ili namještaj." },
-      { q: "Koliko traje pranje sofe?", a: "Trocjedsna sofa prosječno traje 1–2 sata. Tepisi se računaju po kvadratnom metru." },
+      { q: "Koliko dugo treba da se suši?", a: "Tipično 2–4 sata ovisno o debljini tkanine i ventilaciji prostora. Možeš koristiti isti dan — samo daj da se potpuno osuši." },
+      { q: "Možete li ukloniti stare mrlje?", a: "Većinu da — mrlje od kafe, vina, hrane, urina. Starije mrlje zahtijevaju procjenu na licu mjesta i budemo iskreni ako nešto nije moguće ukloniti bez oštećenja tkanine." },
+      { q: "Da li je pranje madraca sigurno?", a: "Da. Koristimo profesionalna sredstva prilagođena tekstilu, bezbjedna za alergičare i djecu. Madrac se suši u prostoru — bez premještanja." },
+      { q: "Koliko traje pranje sofe?", a: "Trocjedsna sofa prosječno traje 1–2 sata. Madrac standardnih dimenzija tipično 45–60 minuta." },
     ],
     cta: {
-      naslov: "Svježe, čisto, kao novo.",
-      tekst: "Javi nam se s opisom komada — dajemo okvirnu cijenu brzo.",
+      naslov: "Higijenski čisto — bez da pomjeraš ništa.",
+      tekst: "Opiši nam komade koje imaš — dajemo okvirnu cijenu odmah.",
     },
   },
 ];
@@ -197,17 +224,15 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
 
             {/* Mobile CTA */}
             <div className="lg:hidden">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContactButton
+                variant="message"
                 className="inline-flex items-center justify-center w-full px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                   shadow-[0_4px_18px_rgba(74,85,104,0.45)]
                   hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.60)] hover:bg-[#3a4255]
                   active:translate-y-0 active:scale-[0.98]"
               >
-                Pošalji upit na WhatsApp
-              </a>
+                Pošalji upit
+              </ContactButton>
             </div>
           </div>
 
@@ -318,17 +343,15 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <ContactButton
+                    variant="message"
                     className="inline-flex items-center justify-center px-5 py-3 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                       shadow-[0_4px_14px_rgba(74,85,104,0.40)]
                       hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(74,85,104,0.55)] hover:bg-[#3a4255]
                       active:translate-y-0 active:scale-[0.98]"
                   >
-                    Pošalji upit na WhatsApp
-                  </a>
+                    Pošalji upit
+                  </ContactButton>
                   <p className="text-xs text-[var(--color-muted)] text-center">
                     Odgovaramo u roku od par sati
                   </p>
@@ -370,17 +393,15 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
           <p className="text-white/60 max-w-sm">
             {usluga.cta.tekst}
           </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ContactButton
+            variant="message"
             className="inline-flex items-center justify-center px-7 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
               shadow-[0_4px_18px_rgba(74,85,104,0.50)]
               hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
               active:translate-y-0 active:scale-[0.98]"
           >
-            Pošalji upit na WhatsApp
-          </a>
+            Pošalji upit
+          </ContactButton>
         </div>
       </section>
 

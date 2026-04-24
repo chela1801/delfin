@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Home, Building2, Sparkles, HardHat, Sofa, ArrowRight, type LucideIcon } from "lucide-react";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
+import ContactButton from "@/components/ui/ContactButton";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 
@@ -41,22 +42,22 @@ const usluge: { naziv: string; opis: string; href: string; Ikona: LucideIcon }[]
 const zasto = [
   {
     naslov: "Sistemičan pristup",
-    opis: "Svaki prostor tretiramo po protokolu — ništa se ne preskače, ništa se ne ostavlja slučaju.",
+    opis: "Svaki prostor prolazi isti protokol — prostorija po prostorija, po unaprijed određenom redoslijedu. Ništa se ne preskači ni kad žurimo.",
     broj: "01",
   },
   {
     naslov: "Pouzdani termini",
-    opis: "Dolazimo kad kažemo. Završavamo na vrijeme. Bez iznenađenja i pregovaranja na licu mjesta.",
+    opis: "Kažemo termin — dolazimo u tom terminu. Kažemo šta radimo — to i radimo. Nema iznenađenja ni pregovaranja na licu mjesta.",
     broj: "02",
   },
   {
     naslov: "Profesionalna sredstva",
-    opis: "Koristimo provjerena sredstva i opremu — efikasna, sigurna za stanare i domaće ljubimce.",
+    opis: "Koristimo isključivo provjerena sredstva — efikasna, bezopasna za stanare, djecu i kućne ljubimce. Dolazimo s vlastitom opremom.",
     broj: "03",
   },
   {
     naslov: "Dugoročni odnos",
-    opis: "Nije nam cilj jedan posao — cilj nam je da budemo agencija kojoj se vraćate.",
+    opis: "Nije nam cilj jedan angažman — cilj je biti servis kojemu se ne moraš objašnjavati svaki put iznova.",
     broj: "04",
   },
 ];
@@ -89,20 +90,18 @@ export default function HomePage() {
           <div className="flex justify-end">
             <div className="w-full max-w-sm flex flex-col gap-6">
               <p className="text-base text-white/60 leading-relaxed">
-                Stanovi, kuće, poslovni prostori — sistemičan pristup, pouzdani termini, kvalitet koji se vidi.
+                Stanovi, kuće, poslovni prostori — dolazimo opremljeni, radimo po protokolu, predajemo ti prostor spreman.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <ContactButton
+                  variant="message"
                   className="inline-flex items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                     shadow-[0_4px_18px_rgba(74,85,104,0.50)]
                     hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
                     active:translate-y-0 active:shadow-[0_2px_8px_rgba(74,85,104,0.35)] active:scale-[0.98]"
                 >
-                  Pošalji upit na WhatsApp
-                </a>
+                  Pošalji upit
+                </ContactButton>
                 <Link
                   href="/usluge"
                   className="inline-flex items-center justify-center px-6 py-3.5 bg-[#6B7A8D] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
@@ -146,10 +145,10 @@ export default function HomePage() {
           {/* Stats sa vertikalnim linijama */}
           <div className="grid grid-cols-2 md:flex md:items-center text-center">
             {[
-              { broj: "5+",       label: "godina iskustva"       },
-              { broj: "200+",     label: "zadovoljnih klijenata" },
-              { broj: "5",        label: "vrsta usluga"          },
-              { broj: "Prijedor", label: "i regija"              },
+              { broj: "15+",       label: "godina iskustva"              },
+              { broj: "1500+",     label: "zadovoljnih klijenata"        },
+              { broj: "35.000 m²", label: "redovno održavamo"            },
+              { broj: "Prijedor",  label: "i regija"                     },
             ].map((item, i) => (
               <div
                 key={item.label}
@@ -232,50 +231,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Prijelaz → tamna, lijeva krivina */}
-        <CurveLeft fill="#0A2D6E" stroke="transparent" />
-      </section>
-
-
-      {/* ═══════════════════════════════════════════
-          CTA BANNER — tamna sekcija
-      ═══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-primary)] pt-24 md:pt-28 pb-24 md:pb-28 mt-[-2px]">
-
-        {/* Fade overlay — prikriva spoj s krivinom iznad */}
-        <div
-          className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
-          style={{ background: "linear-gradient(180deg, #0A2D6E 0%, transparent 100%)" }}
-          aria-hidden="true"
-        />
-
-        {/* Statični gradijent — blur krugovi */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div className="absolute bottom-[-4rem] left-[5%] w-[500px] h-[500px] rounded-full bg-[var(--color-secondary)] opacity-45 blur-2xl" />
-          <div className="absolute bottom-[-7rem] left-[38%] w-[620px] h-[620px] rounded-full bg-[#2563EB] opacity-30 blur-2xl" />
-        </div>
-
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Kontakt</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight max-w-lg">
-            Trebaš čišćenje?<br />Javi se danas.
-          </h2>
-          <p className="text-white/55 max-w-sm leading-relaxed">
-            Odgovaramo brzo. Bez dugih formi i čekanja — jedan WhatsApp i dogovoreno je.
-          </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-7 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
-              shadow-[0_4px_18px_rgba(74,85,104,0.50)]
-              hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
-              active:translate-y-0 active:shadow-[0_2px_8px_rgba(74,85,104,0.35)] active:scale-[0.98]"
-          >
-            Pošalji upit na WhatsApp
-          </a>
-        </div>
-
         {/* Prijelaz → bg-alt, desna krivina */}
         <CurveRight fill="#EFF5FB" />
       </section>
@@ -284,7 +239,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════
           ZAŠTO DELFIN — bg-alt sekcija
       ═══════════════════════════════════════════ */}
-      <section className="relative bg-[var(--color-bg-alt)] pt-24 md:pt-28 pb-24 md:pb-28">
+      <section className="relative bg-[var(--color-bg-alt)] pt-24 md:pt-28 pb-24 md:pb-28 mt-[-2px]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] mb-2">Zašto mi</p>
@@ -313,8 +268,55 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Prijelaz → footer (tamna), lijeva krivina */}
+        {/* Prijelaz → tamna, lijeva krivina */}
         <CurveLeft fill="#0A2D6E" stroke="transparent" />
+      </section>
+
+
+      {/* ═══════════════════════════════════════════
+          CTA BANNER — tamna sekcija
+      ═══════════════════════════════════════════ */}
+      <section className="relative bg-[var(--color-primary)] pt-24 md:pt-28 pb-24 md:pb-28 mt-[-2px]">
+
+        {/* Fade overlay — prikriva spoj s krivinom iznad */}
+        <div
+          className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+          style={{ background: "linear-gradient(180deg, #0A2D6E 0%, transparent 100%)" }}
+          aria-hidden="true"
+        />
+
+        {/* Statični gradijent — blur krugovi */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute bottom-[-4rem] left-[5%] w-[500px] h-[500px] rounded-full bg-[var(--color-secondary)] opacity-45 blur-2xl" />
+          <div className="absolute bottom-[-7rem] left-[38%] w-[620px] h-[620px] rounded-full bg-[#2563EB] opacity-30 blur-2xl" />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Kontakt</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight max-w-lg">
+            Jedan WhatsApp.<br />Sve je dogovoreno.
+          </h2>
+          <p className="text-white/55 max-w-sm leading-relaxed">
+            Opiši prostor i termin koji ti odgovara — odgovaramo u roku od par sati, bez formi i čekanja.
+          </p>
+          <ContactButton
+            variant="message"
+            className="inline-flex items-center justify-center px-7 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
+              shadow-[0_4px_18px_rgba(74,85,104,0.50)]
+              hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
+              active:translate-y-0 active:shadow-[0_2px_8px_rgba(74,85,104,0.35)] active:scale-[0.98]"
+          >
+            Pošalji upit
+          </ContactButton>
+        </div>
+
+        {/* Fade → footer (ista boja, nema reza) */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+          style={{ background: "linear-gradient(0deg, #0A2D6E 0%, transparent 100%)" }}
+          aria-hidden="true"
+        />
+
       </section>
 
     </>

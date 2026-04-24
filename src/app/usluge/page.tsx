@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Home, Building2, Sparkles, HardHat, Sofa, type LucideIcon } from "lucide-react";
+import { Home, Building2, Sparkles, HardHat, Sofa, Forklift, type LucideIcon } from "lucide-react";
+import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
 
@@ -12,7 +13,7 @@ const usluge: {
   {
     slug: "ciscenje-stanova-i-kuca",
     naziv: "Čišćenje stanova i kuća",
-    opis: "Redovno i jednokratno čišćenje stambenih prostora — temeljito, pouzdano, bez stresa.",
+    opis: "Dolazimo s opremom, radimo od vrha do dna po protokolu, predajemo ti stan spreman. Nema pregovaranja na licu mjesta — unaprijed znaš šta dobijаš.",
     detalji: ["Dnevni boravak i spavaće sobe", "Kupatilo i kuhinja", "Podovi, prozori, prašina"],
     za: "Privatni korisnici",
     Ikona: Home,
@@ -21,8 +22,8 @@ const usluge: {
   {
     slug: "ciscenje-poslovnih-prostora",
     naziv: "Čišćenje poslovnih prostora",
-    opis: "Čisto radno okruženje za vaš tim — fleksibilni termini koji ne ometaju posao.",
-    detalji: ["Kancelarije i sale", "Sanitarni čvorovi", "Hodnici i zajednički prostori"],
+    opis: "Jutarnji, večernji ili vikend termini — čišćenje koje se uklapa u vaš raspored, ne obrnuto. Ugovor, faktura, stalni tim.",
+    detalji: ["Kancelarije i sale", "Sanitarni čvorovi — visoka higijena", "Hodnici i zajednički prostori"],
     za: "Firme i poslovni prostori",
     Ikona: Building2,
     broj: "02",
@@ -30,8 +31,8 @@ const usluge: {
   {
     slug: "generalno-i-dubinsko-ciscenje",
     naziv: "Generalno i dubinsko čišćenje",
-    opis: "Kada redovno čišćenje nije dovoljno — kompletna obnova prostora od poda do plafona.",
-    detalji: ["Kompletno čišćenje po protokolu", "Teško dostupna mjesta", "Dezinfekcija površina"],
+    opis: "Od iza frižidera do plafona — mjesta koja redovno čišćenje zaobilazi. Jednom kako treba, pa dugo čisto.",
+    detalji: ["Kompletno čišćenje po protokolu", "Teško dostupna mjesta", "Dezinfekcija i higijenizacija površina"],
     za: "Stanovi, kuće, poslovni prostori",
     Ikona: Sparkles,
     broj: "03",
@@ -39,26 +40,35 @@ const usluge: {
   {
     slug: "ciscenje-nakon-renoviranja",
     naziv: "Čišćenje nakon renoviranja",
-    opis: "Prašina, boja, malter — uklanjamo sve što ostaje nakon radova. Prostor spreman za useljenje.",
-    detalji: ["Uklanjanje građevinskog otpada", "Čišćenje premaza i fleka", "Finalno poliranje"],
-    za: "Stanovi i kuće nakon radova",
+    opis: "Nakon majstora dolazi naš tim. Prašina, boja, malter — sve ide. Prostor spreman za useljenje za jedan dan.",
+    detalji: ["Građevinska prašina i ostaci", "Premazi, fleke, silikon", "Finalno poliranje i priprema"],
+    za: "Stanovi, kuće i poslovni prostori",
     Ikona: HardHat,
     broj: "04",
   },
   {
+    slug: "dizalica-i-pranje-fasada",
+    naziv: "Dizalica — pranje fasada i visinski radovi",
+    opis: "Do 25 metara visine — pranje fasada, čišćenje staklenih površina, rezidba drveća i uklanjanje naslaga. Dizalica dostupna i za najam.",
+    detalji: ["Pranje fasada do 25m visine", "Uklanjanje mahovine i algi", "Najam dizalice s operaterom ili bez"],
+    za: "Firme i privatni korisnici",
+    Ikona: Forklift,
+    broj: "06",
+  },
+  {
     slug: "dubinsko-pranje-tepisa",
-    naziv: "Dubinsko pranje tepiha i namještaja",
-    opis: "Ručno dubinsko pranje tepiha, sofa i tapaciranog namještaja — bez mašina, bez kompromisa.",
-    detalji: ["Tepisi i kilimi", "Sofe i fotelje", "Tapacirani namještaj"],
+    naziv: "Dubinsko pranje namještaja i madraca",
+    opis: "Dolazimo k tebi s opremom, peremo na licu mjesta — nema transporta, nema logistike. Sofa, madrac ili fotelja higijenski čisto za jedan dan.",
+    detalji: ["Sofe i fotelje", "Madraci — dezinfekcija i uklanjanje grinja", "Tapacirani namještaj"],
     za: "Privatni korisnici i firme",
     Ikona: Sofa,
-    broj: "05",
+    broj: "07",
   },
 ];
 
 export const metadata = {
   title: "Usluge — Delfin Prijedor",
-  description: "Pet specijalizovanih usluga profesionalnog čišćenja u Prijedoru — svaka s vlastitim protokolom.",
+  description: "Šest specijalizovanih usluga profesionalnog čišćenja u Prijedoru — svaka s vlastitim protokolom.",
 };
 
 export default function UslugePage() {
@@ -75,7 +85,7 @@ export default function UslugePage() {
             Usluge profesionalnog<br className="hidden md:block" /> čišćenja u Prijedoru
           </h1>
           <p className="text-lg text-white/60 max-w-xl leading-relaxed">
-            Pet specijalizovanih usluga — svaka s vlastitim protokolom i timom.
+            Šest specijalizovanih usluga — svaka s vlastitim protokolom i timom.
             Izaberi ono što ti treba ili nas pitaj ako nisi siguran.
           </p>
         </div>
@@ -141,17 +151,15 @@ export default function UslugePage() {
                   >
                     Saznaj više →
                   </Link>
-                  <a
-                    href={WHATSAPP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <ContactButton
+                    variant="message"
                     className="inline-flex items-center justify-center px-5 py-2.5 bg-[#6B7A8D] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                       shadow-[0_4px_14px_rgba(107,122,141,0.35)]
                       hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(107,122,141,0.50)] hover:bg-[#5a6a7d]
                       active:translate-y-0 active:scale-[0.98]"
                   >
-                    WhatsApp upit
-                  </a>
+                    Pošalji upit
+                  </ContactButton>
                 </div>
               </div>
             ))}
@@ -174,17 +182,15 @@ export default function UslugePage() {
               Opiši nam prostor i situaciju — savjetujemo besplatno i brzo.
             </p>
           </div>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <ContactButton
+            variant="message"
             className="flex-shrink-0 inline-flex items-center justify-center px-7 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
               shadow-[0_4px_18px_rgba(74,85,104,0.40)]
               hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.55)] hover:bg-[#3a4255]
               active:translate-y-0 active:scale-[0.98]"
           >
-            Pošalji upit na WhatsApp
-          </a>
+            Pošalji upit
+          </ContactButton>
         </div>
 
         <CurveLeft fill="#0A2D6E" stroke="transparent" />

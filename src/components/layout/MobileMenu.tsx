@@ -5,9 +5,9 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { X } from "lucide-react";
 import DelfinLogo from "@/components/ui/DelfinLogo";
+import { useContactModal } from "@/components/ui/ContactModal";
 
 const navLinks = [
-  { label: "Početna",  href: "/"        },
   { label: "Usluge",   href: "/usluge"  },
   { label: "O nama",   href: "/o-nama"  },
   { label: "Za firme", href: "/firme"   },
@@ -20,6 +20,7 @@ export default function MobileMenu() {
   const [open, setOpen]       = useState(false);
   const [closing, setClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { openModal } = useContactModal();
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -114,19 +115,17 @@ export default function MobileMenu() {
 
           {/* CTA */}
           <div className="delfin-nav-footer px-6 pb-10 pt-6 border-t border-white/10 flex flex-col gap-3">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={close}
+            <button
+              type="button"
               tabIndex={open ? 0 : -1}
+              onClick={() => { close(); openModal("full"); }}
               className="inline-flex items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                 shadow-[0_4px_18px_rgba(74,85,104,0.45)]
                 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.60)] hover:bg-[#3a4255]
                 active:translate-y-0 active:scale-[0.98]"
             >
-              Kontaktiraj nas na WhatsApp
-            </a>
+              Kontaktiraj nas
+            </button>
             <p className="text-xs text-white/25 text-center">Prijedor i regija</p>
           </div>
           </div>{/* /delfin-nav-inner */}

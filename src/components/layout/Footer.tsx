@@ -1,5 +1,7 @@
 import Link from "next/link";
 import DelfinLogo from "@/components/ui/DelfinLogo";
+import ContactButton from "@/components/ui/ContactButton";
+import { FaInstagram, FaTiktok, FaFacebookF } from "react-icons/fa";
 
 const usluge = [
   { label: "Čišćenje stanova i kuća", href: "/usluge/ciscenje-stanova-i-kuca" },
@@ -18,6 +20,12 @@ const kompanija = [
 const WHATSAPP_URL = "https://wa.me/38766246346";
 const PHONE = "+387 66 246 346";
 
+const socials = [
+  { label: "Instagram", href: "https://instagram.com/delfin.prijedor", Icon: FaInstagram },
+  { label: "TikTok",    href: "https://tiktok.com/@delfin.prijedor",   Icon: FaTiktok   },
+  { label: "Facebook",  href: "https://facebook.com/delfin.prijedor",  Icon: FaFacebookF },
+];
+
 export default function Footer() {
   return (
     <footer className="relative bg-[var(--color-primary)] text-white">
@@ -33,17 +41,32 @@ export default function Footer() {
             <p className="text-white/70 text-sm leading-relaxed">
               Profesionalno čišćenje i održavanje objekata u Prijedoru i regiji.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContactButton
+              variant="full"
               className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] w-fit transition-all duration-150
               shadow-[0_4px_18px_rgba(74,85,104,0.50)]
               hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
               active:translate-y-0 active:shadow-[0_2px_8px_rgba(74,85,104,0.35)] active:scale-[0.98]"
             >
-              WhatsApp upit
-            </a>
+              Kontaktiraj nas
+            </ContactButton>
+
+            {/* Društvene mreže */}
+            <div className="flex items-center gap-2 mt-1">
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 text-white/60
+                    hover:bg-white/20 hover:text-white transition-all duration-150"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Usluge */}
@@ -93,7 +116,14 @@ export default function Footer() {
               >
                 {PHONE}
               </a>
-              <span className="text-sm text-white/70">Prijedor, BiH</span>
+              <a
+                href="https://maps.google.com/?q=Milana+Vrhovca+27,+Prijedor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-white/70 hover:text-white transition-colors"
+              >
+                Milana Vrhovca 27, Prijedor
+              </a>
             </div>
           </div>
 

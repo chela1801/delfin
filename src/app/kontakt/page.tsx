@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MessageCircle, MapPin, Clock } from "lucide-react";
+import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
 
@@ -28,10 +29,11 @@ export default function KontaktPage() {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-4 sm:mb-5">
-            Kontaktiraj nas
+            Jedan upit. Sve je dogovoreno.
           </h1>
           <p className="text-lg text-white/60 max-w-md leading-relaxed">
-            Privatni korisnici — WhatsApp. Firme i poslovni prostori — forma ispod.
+            Privatni korisnici — WhatsApp, odgovaramo u roku od par sati.<br />
+            Firme i poslovni prostori — forma ispod, šaljemo ponudu u toku radnog dana.
           </p>
         </div>
 
@@ -57,8 +59,8 @@ export default function KontaktPage() {
                   Javi se na WhatsApp
                 </h2>
                 <p className="text-[var(--color-muted)] text-sm leading-relaxed">
-                  Najbrži način. Opiši prostor i termin koji ti odgovara —
-                  odgovaramo u roku od par sati.
+                  Najbrži način. Pošalji nam opis prostora i termin koji ti odgovara —
+                  dogovaramo sve bez poziva, bez čekanja.
                 </p>
               </div>
 
@@ -89,17 +91,15 @@ export default function KontaktPage() {
                 </div>
               </div>
 
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <ContactButton
+                variant="message"
                 className="mt-auto inline-flex w-full items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                   shadow-[0_4px_18px_rgba(74,85,104,0.45)]
                   hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.60)] hover:bg-[#3a4255]
                   active:translate-y-0 active:scale-[0.98]"
               >
-                Otvori WhatsApp
-              </a>
+                Pošalji upit
+              </ContactButton>
             </div>
 
             {/* B2B — Forma */}

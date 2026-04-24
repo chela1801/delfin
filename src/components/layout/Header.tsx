@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import DelfinLogo from "@/components/ui/DelfinLogo";
+import { useContactModal } from "@/components/ui/ContactModal";
 
 const navLinks = [
-  { label: "Početna", href: "/" },
   { label: "Usluge", href: "/usluge" },
   { label: "O nama", href: "/o-nama" },
   { label: "Kontakt", href: "/kontakt" },
@@ -16,6 +16,7 @@ const WHATSAPP_URL = "https://wa.me/38766246346";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const { openModal } = useContactModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -56,21 +57,23 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-3 flex-shrink-0">
             <Link
               href="/firme"
-              className="text-sm font-medium text-white/50 hover:text-white/90 transition-colors whitespace-nowrap"
+              className="px-4 py-1.5 bg-[#6B7A8D] text-white text-sm font-semibold rounded-full transition-all duration-150
+                shadow-[0_2px_10px_rgba(107,122,141,0.40)]
+                hover:-translate-y-0.5 hover:bg-[#5a6a7d] hover:shadow-[0_4px_16px_rgba(107,122,141,0.55)]
+                active:translate-y-0 active:scale-[0.98] whitespace-nowrap"
             >
               Za firme
             </Link>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openModal("full")}
               className="px-4 py-1.5 bg-[#4A5568] text-white text-sm font-semibold rounded-full transition-all duration-150
                 shadow-[0_2px_10px_rgba(74,85,104,0.40)]
                 hover:-translate-y-0.5 hover:bg-[#3a4255] hover:shadow-[0_4px_16px_rgba(74,85,104,0.55)]
                 active:translate-y-0 active:scale-[0.98] whitespace-nowrap"
             >
               Kontaktiraj nas
-            </a>
+            </button>
           </div>
 
           {/* Mobilni meni */}

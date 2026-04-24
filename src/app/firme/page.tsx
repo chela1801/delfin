@@ -6,44 +6,44 @@ import HeroBg from "@/components/ui/HeroBg";
 const prednosti = [
   {
     broj: "01",
-    naslov: "Fleksibilni termini",
-    opis: "Čišćenje van radnog vremena — jutro, veče ili vikend. Vaš posao ne staje.",
+    naslov: "Termini koji ne ometaju rad",
+    opis: "Jutarnje, večernje ili vikend čišćenje — dogovaramo prema vašem rasporedu. Tim dolazi i odlazi bez da vaši zaposleni ni primijete.",
   },
   {
     broj: "02",
-    naslov: "Redovni servis",
-    opis: "Dnevno, sedmično ili po dogovoru. Jedan ugovor, stalni tim, predvidiv rezultat.",
+    naslov: "Stalni tim, predvidivi rezultat",
+    opis: "Ne šaljemo svakog puta drugačiji tim. Isti ljudi uče vaš prostor jednom i rade bez da ih morate usmjeravati iznova.",
   },
   {
     broj: "03",
-    naslov: "Fakturisanje i dokumentacija",
-    opis: "Radimo s firmama — faktura, ugovor i sva potrebna dokumentacija su standard.",
+    naslov: "Faktura i ugovor — standard",
+    opis: "Za svakog poslovnog klijenta: pisana ponuda, ugovor s jasno definisanim obimom posla, terminima i cijenom. Faktura redovno, bez podsjetnika i usmenih dogovora.",
   },
   {
     broj: "04",
-    naslov: "Odgovornost i povjerljivost",
-    opis: "Vaš prostor, vaša oprema i dokumenti su sigurni. Potpisujemo NDA na zahtjev.",
+    naslov: "Osiguranje i povjerljivost",
+    opis: "Posjedujemo polisu osiguranja od odgovornosti prema trećim licima i zasebnu za firme i fizička lica — svako oštećenje tokom rada je pokriveno. Na zahtjev potpisujemo NDA (ugovor o povjerljivosti) — garancija da sve što tim vidi u vašim prostorijama ostaje isključivo između nas.",
   },
 ];
 
 const uslugeFirme: { naziv: string; opis: string; frekvencije: string[]; Ikona: LucideIcon; href: string }[] = [
   {
     naziv: "Redovno čišćenje poslovnih prostora",
-    opis: "Kancelarije, sale za sastanke, hodnici, sanitarni čvorovi — po dogovorenom rasporedu.",
+    opis: "Kancelarije, sale za sastanke, hodnici, sanitarni čvorovi — stalni tim, dogovoreni termini, predvidiv standard.",
     frekvencije: ["Dnevno", "Sedmično", "Po dogovoru"],
     Ikona: Building2,
     href: "/usluge/ciscenje-poslovnih-prostora",
   },
   {
     naziv: "Generalno i dubinsko čišćenje",
-    opis: "Kompletna obnova prostora — idealno za sezonsko čišćenje ili pripremu novog ureda.",
+    opis: "Od iza ormarića do plafona — kompletna obnova prostora idealna za sezonsko čišćenje ili otvaranje novog ureda.",
     frekvencije: ["Jednokratno", "Sezonski"],
     Ikona: Sparkles,
     href: "/usluge/generalno-i-dubinsko-ciscenje",
   },
   {
     naziv: "Čišćenje nakon renoviranja",
-    opis: "Brzo vraćamo uredski prostor u funkciju nakon radova — prašina, boja, malter.",
+    opis: "Nakon majstora dolazi naš tim — prašina, boja, malter. Ured vraćamo u funkciju za jedan dan.",
     frekvencije: ["Jednokratno"],
     Ikona: HardHat,
     href: "/usluge/ciscenje-nakon-renoviranja",
@@ -51,9 +51,9 @@ const uslugeFirme: { naziv: string; opis: string; frekvencije: string[]; Ikona: 
 ];
 
 const proces = [
-  { broj: "01", naslov: "Upit putem forme", opis: "Popuni formu s osnovnim podacima o prostoru i potrebama. Javimo se u toku radnog dana." },
+  { broj: "01", naslov: "Upit putem forme", opis: "Popuni formu s osnovnim podacima o prostoru i potrebama, ili nas pozovite. Javimo se u toku radnog dana." },
   { broj: "02", naslov: "Obilazak i procjena", opis: "Dogovaramo kratki obilazak prostora radi tačne procjene — besplatno i bez obaveze." },
-  { broj: "03", naslov: "Ponuda i ugovor", opis: "Šaljemo pisanu ponudu s jasnim scope-om, cijenom i terminima. Bez skrivenih troškova." },
+  { broj: "03", naslov: "Ponuda i ugovor", opis: "Šaljemo pisanu ponudu s jasno definisanim obimom posla, cijenom i terminima. Bez skrivenih troškova." },
   { broj: "04", naslov: "Redovni servis", opis: "Dogovoreni tim, dogovoreni termini. Izvještaj o urađenom na zahtjev." },
 ];
 
@@ -184,7 +184,7 @@ export default function FirmePage() {
             {prednosti.map((s) => (
               <div
                 key={s.broj}
-                className="flex gap-5 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)]
+                className="flex items-start gap-5 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)] min-h-[11rem]
                   shadow-[0_2px_16px_rgba(10,45,110,0.07)]
                   hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(10,45,110,0.13)] hover:border-[var(--color-primary)]/20
                   active:translate-y-0 transition-all duration-200"

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Camera, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
+import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
 
@@ -9,17 +10,17 @@ const vrijednosti = [
   {
     broj: "01",
     naslov: "Sistem ispred improvizacije",
-    opis: "Svaki posao radimo po protokolu. Nije važno da li čistimo garsonjeru ili poslovni kompleks.",
+    opis: "Svaki posao, bez obzira na veličinu, ide po protokolu. Improvizacija je skuplja od sistema — u vremenu, u kvalitetu i u povjerenju.",
   },
   {
     broj: "02",
     naslov: "Odgovornost bez izgovora",
-    opis: "Ako nešto nije u redu — kažemo i rješavamo. Ne čekamo da klijent primijeti.",
+    opis: "Ako nešto nije kako treba — kažemo i rješavamo odmah. Ne čekamo da klijent primijeti. Ne tražimo opravdanje.",
   },
   {
     broj: "03",
     naslov: "Odnos je važniji od posla",
-    opis: "Radije ćemo izgubiti jedan angažman nego izgubiti povjerenje klijenta.",
+    opis: "Radije ćemo izgubiti jedan angažman nego izgubiti povjerenje klijenta. Svaki klijent kojeg čuvamo vrijedi više od deset novih.",
   },
 ];
 
@@ -51,8 +52,8 @@ export default function ONamaPage() {
             Ko smo i zašto radimo<br className="hidden md:block" /> ovaj posao
           </h1>
           <p className="text-lg text-white/60 max-w-xl leading-relaxed">
-            Delfin nije nastao kao posao — nastao je iz frustracije što u Prijedoru
-            nije postojala agencija kojoj možeš zaista vjerovati.
+            Delfin nije nastao kao posao — nastao je iz jedne konkretne frustracije:
+            u Prijedoru nije postojao servis za čišćenje kojemu možeš zaista vjerovati.
           </p>
         </div>
 
@@ -67,16 +68,16 @@ export default function ONamaPage() {
             <div className="flex-1 flex flex-col gap-5">
               <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">Kako je počelo</p>
               <h2 className="text-3xl font-bold text-[var(--color-text)] tracking-tight">
-                Čišćenje je uvijek bilo "nekako"
+                Čišćenje je uvijek izgledalo isto
               </h2>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Svako je imao svoje iskustvo — netko dođe, nešto uradi, nema garancije
-                da će se ponoviti na isti način. Nema protokola, nema odgovornosti,
-                nema predvidivosti. Svaki put nova igra.
+                Pozoveš nekoga, dođe na vrijeme, uradi pristojno — ali sljedeći put
+                je drugačije. Kasni, preskoči nešto, ili jednostavno prestane dolaziti.
+                Tražiš novog čovjeka, sve ispočetka. I niko se ne osjeća odgovornim.
               </p>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Upravo to je bio svakodnevni problem vlasnika prostora u Prijedoru.
-                Ne nedostatak radne snage — nedostatak sistema.
+                To nije bio problem nedostatka radne snage.
+                To je bio problem sistema — tačnije, njegovog potpunog izostanka.
               </p>
             </div>
             <div className="w-full lg:w-[420px] flex-shrink-0">
@@ -98,12 +99,12 @@ export default function ONamaPage() {
               Onda smo odlučili da to promijenimo
             </h2>
             <p className="text-[var(--color-muted)] leading-relaxed">
-              Delfin je osnovan s jednom idejom: da profesionalno čišćenje
-              u Prijedoru konačno znači isto što i u većim gradovima.
-              Sistem, protokol, tim koji se vraća, rezultat koji se vidi.
+              Delfin je osnovan s jednom tačno određenom idejom: da čišćenje
+              može biti predvidivo. Isti standard svaki put. Tim koji se vraća.
+              Protokol koji ne ovisi o raspoloženju toga dana.
             </p>
             <p className="text-[var(--color-muted)] leading-relaxed">
-              Ne agencija koja obećava sve — agencija koja isporučuje ono što dogovori.
+              Ne servis koji obećava sve — servis koji isporučuje tačno ono što dogovori.
             </p>
           </div>
         </div>
@@ -122,13 +123,14 @@ export default function ONamaPage() {
                 Svaki prostor, isti standard
               </h2>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Razvili smo vlastiti protokol za svaku vrstu čišćenja.
-                Svaki tim zna tačno šta radi, kojim redoslijedom i šta se provjerava
-                na kraju. Klijent ne treba da objašnjava dva puta.
+                Za svaki tip čišćenja postoji protokol. Ne lista u glavi —
+                pisani redoslijed koji se ne mijenja. Dolazimo opremljeni,
+                radimo sistematično, i na kraju provjeravamo. Nema "mislim da smo to uradili".
               </p>
               <p className="text-[var(--color-muted)] leading-relaxed">
-                Koristimo provjerena profesionalna sredstva, dolazimo opremljeni
-                i odgovorni smo za prostor koji nam povjerite.
+                Koristimo isključivo profesionalna sredstva, sigurna za stanare,
+                djecu i kućne ljubimce. Dolazimo s vlastitom opremom i odgovorni
+                smo za svaki centimetar prostora koji nam povjerite.
               </p>
             </div>
             <div className="w-full lg:w-80 flex-shrink-0 flex flex-col gap-4">
@@ -221,11 +223,9 @@ export default function ONamaPage() {
             </Link>
 
             {/* Kartica — Kontakt */}
-            <a
-              href="https://wa.me/38766246346"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col gap-5 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)]
+            <ContactButton
+              variant="message"
+              className="group flex flex-col gap-5 p-6 bg-white border border-[var(--color-border)] rounded-[var(--radius-xl)] text-left
                 shadow-[0_2px_16px_rgba(10,45,110,0.07)]
                 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(10,45,110,0.14)] hover:border-[var(--color-primary)]/25
                 active:translate-y-0 active:shadow-[0_2px_10px_rgba(10,45,110,0.08)]
@@ -242,10 +242,10 @@ export default function ONamaPage() {
                 </p>
               </div>
               <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-primary)] group-hover:gap-2.5 transition-all duration-200">
-                WhatsApp upit
+                Pošalji upit
                 <ArrowRight size={14} />
               </span>
-            </a>
+            </ContactButton>
 
           </div>
         </div>
@@ -282,12 +282,13 @@ export default function ONamaPage() {
               Cilj nije rasti — cilj je biti pouzdan
             </h2>
             <p className="text-white/60 leading-relaxed max-w-md">
-              Cilj nije biti najveća agencija za čišćenje u Bosni.
-              Cilj je biti agencija kojoj klijenti u Prijedoru i regiji
-              bezuvjetno vjeruju — i kojoj se vraćaju godinama.
+              Ne idemo za tim da budemo najveći servis za čišćenje u Bosni.
+              Idemo za tim da budemo servis kojemu klijenti u Prijedoru i regiji
+              bezuvjetno vjeruju — i kojemu se vraćaju godinama.
             </p>
             <p className="text-white/60 leading-relaxed max-w-md">
-              Rast za nas znači bolji servis, ne samo više klijenata.
+              Rast za nas znači bolji servis, pažljiviji odabir timova
+              i duži odnosi — ne samo više klijenata.
             </p>
           </div>
           <div className="flex-shrink-0 flex flex-col gap-4 p-6 bg-white/5 border border-white/10 rounded-[var(--radius-xl)] w-full md:w-72
@@ -297,17 +298,15 @@ export default function ONamaPage() {
             <p className="text-sm text-white/55">
               Najlakši korak je jedna poruka. Opiši šta trebaš — mi ćemo predložiti kako možemo pomoći.
             </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ContactButton
+              variant="message"
               className="inline-flex items-center justify-center px-6 py-3.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
                 shadow-[0_4px_18px_rgba(74,85,104,0.50)]
                 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(74,85,104,0.65)] hover:bg-[#3a4255]
                 active:translate-y-0 active:scale-[0.98]"
             >
-              Pošalji poruku na WhatsApp
-            </a>
+              Pošalji upit
+            </ContactButton>
           </div>
         </div>
       </section>
