@@ -150,7 +150,7 @@ export default function UslugePage() {
                 </div>
 
                 {/* Desno — CTA */}
-                <div className="flex md:flex-col justify-start md:justify-center gap-3 md:w-44 flex-shrink-0">
+                <div className="flex flex-wrap md:flex-col justify-start md:justify-center gap-3 md:w-44 flex-shrink-0">
                   <Link
                     href={`/usluge/${usluga.slug}`}
                     className="inline-flex items-center justify-center px-5 py-2.5 bg-[#4A5568] text-white text-sm font-semibold rounded-[var(--radius-xl)] transition-all duration-150
