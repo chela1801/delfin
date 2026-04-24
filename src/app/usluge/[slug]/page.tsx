@@ -139,7 +139,7 @@ const usluge: {
     },
   },
   {
-    slug: "dubinsko-pranje-tepisa",
+    slug: "dubinsko-pranje-namjestaja-i-madraca",
     naziv: "Dubinsko pranje namještaja i madraca",
     podnaslov: "Dolazimo s opremom, peremo na licu mjesta — nema transporta, nema logistike. Sofa, madrac ili fotelja — higijenski čisto za jedan dan.",
     za: "Privatni korisnici i firme",
@@ -185,13 +185,52 @@ export function generateStaticParams() {
   return usluge.map((u) => ({ slug: u.slug }));
 }
 
+const seoMeta: Record<string, { title: string; description: string }> = {
+  "ciscenje-stanova-i-kuca": {
+    title: "Čišćenje stanova i kuća u Prijedoru",
+    description: "Profesionalno čišćenje stanova i kuća u Prijedoru — od prašine do podova, od vrha do dna. Dolazimo opremljeni, ti samo otvori vrata.",
+  },
+  "ciscenje-poslovnih-prostora": {
+    title: "Čišćenje poslovnih prostora Prijedor",
+    description: "Čišćenje kancelarija i poslovnih prostora u Prijedoru — jutarnji, večernji ili vikend termini. Ugovor, faktura i stalni tim po standardu.",
+  },
+  "generalno-i-dubinsko-ciscenje": {
+    title: "Generalno i dubinsko čišćenje Prijedor",
+    description: "Dubinsko čišćenje prostora u Prijedoru — od iza frižidera do plafona. Suha para, dezinfekcija i higijenizacija svih površina. Jednom temeljito — dugo čisto.",
+  },
+  "ciscenje-nakon-renoviranja": {
+    title: "Čišćenje nakon renoviranja Prijedor",
+    description: "Čišćenje nakon renoviranja u Prijedoru — prašina, boja, malter. Tim dolazi odmah po završetku radova, prostor spreman za useljenje isti dan.",
+  },
+  "dizalica-i-pranje-fasada": {
+    title: "Pranje fasada i visinski radovi Prijedor",
+    description: "Pranje fasada i visinski radovi u Prijedoru — do 25 metara visine bez skela. Uklanjanje mahovine i algi, čišćenje stakla. Dizalica dostupna i za najam.",
+  },
+  "dubinsko-pranje-namjestaja-i-madraca": {
+    title: "Dubinsko pranje namještaja i madraca",
+    description: "Dubinsko pranje namještaja i madraca u Prijedoru — sofe, fotelje, dezinfekcija madraca i uklanjanje grinja. Dolazimo s opremom, peremo na licu mjesta.",
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const usluga = usluge.find((u) => u.slug === slug);
   if (!usluga) return {};
+  const meta = seoMeta[slug];
+  const title = meta?.title ?? `${usluga.naziv} u Prijedoru`;
+  const description = meta?.description ?? usluga.podnaslov;
   return {
-    title: `${usluga.naziv} u Prijedoru — Delfin`,
-    description: usluga.podnaslov,
+    title,
+    description,
+    openGraph: {
+      title: `${title} | Delfin`,
+      description,
+      locale: "sr_BA",
+      type: "website" as const,
+    },
+    alternates: {
+      canonical: `https://delfin-amber.vercel.app/usluge/${slug}`,
+    },
   };
 }
 
@@ -200,8 +239,22 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
   const usluga = usluge.find((u) => u.slug === slug);
   if (!usluga) notFound();
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: usluga.faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* ═══ HERO ═══════════════════════════════════════════ */}
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">

@@ -14,8 +14,17 @@ const radnoVrijeme = [
 ];
 
 export const metadata = {
-  title: "Kontakt — Delfin Prijedor",
-  description: "Kontaktirajte Delfin — WhatsApp za privatne korisnike, forma za firme.",
+  title: "Kontakt — Delfin servis za čišćenje",
+  description: "Kontaktiraj Delfin — WhatsApp i Viber za privatne korisnike, forma za firme. Prijedor i okolina. Odgovaramo u roku od par sati, svakog dana.",
+  openGraph: {
+    title: "Kontakt | Delfin — servis za čišćenje Prijedor",
+    description: "Kontaktiraj Delfin — WhatsApp i Viber za privatne korisnike, forma za firme. Prijedor i okolina.",
+    locale: "sr_BA",
+    type: "website" as const,
+  },
+  alternates: {
+    canonical: "https://delfin-amber.vercel.app/kontakt",
+  },
 };
 
 export default function KontaktPage() {

@@ -34,8 +34,17 @@ function FotoPlaceholder({ label, aspect = "aspect-video" }: { label: string; as
 }
 
 export const metadata = {
-  title: "O nama — Delfin Prijedor",
-  description: "Ko smo, zašto radimo ovaj posao i po kojim principima.",
+  title: "O nama — Delfin servis za čišćenje",
+  description: "Ko je Delfin i zašto smo ga osnovali — priča o čišćenju koje je moralo biti predvidivo, pouzdano i sistemično. Servis za čišćenje iz Prijedora koji drži riječ.",
+  openGraph: {
+    title: "O nama | Delfin — servis za čišćenje Prijedor",
+    description: "Ko je Delfin i zašto smo ga osnovali — priča o čišćenju koje je moralo biti predvidivo, pouzdano i sistemično.",
+    locale: "sr_BA",
+    type: "website" as const,
+  },
+  alternates: {
+    canonical: "https://delfin-amber.vercel.app/o-nama",
+  },
 };
 
 export default function ONamaPage() {
@@ -212,7 +221,7 @@ export default function ONamaPage() {
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-bold text-[var(--color-text)] tracking-tight">Pogledaj naše usluge</h3>
                 <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-                  Pet specijalizovanih usluga — svaka s vlastitim protokolom.
+                  Šest specijalizovanih usluga — svaka s vlastitim protokolom.
                   Nađi onu koja odgovara tvom prostoru.
                 </p>
               </div>

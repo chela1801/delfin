@@ -58,8 +58,17 @@ const proces = [
 ];
 
 export const metadata = {
-  title: "Za firme — Delfin Prijedor",
-  description: "Profesionalno čišćenje poslovnih prostora u Prijedoru — redovni servis, fakturisanje, fleksibilni termini.",
+  title: "Čišćenje poslovnih prostora za firme",
+  description: "Čišćenje kancelarija i poslovnih prostora za firme u Prijedoru — redovni servis, ugovor i faktura, fleksibilni termini. Stalni tim, predvidivi rezultat, bez iznenađenja.",
+  openGraph: {
+    title: "Čišćenje poslovnih prostora za firme | Delfin Prijedor",
+    description: "Čišćenje kancelarija i poslovnih prostora za firme u Prijedoru — redovni servis, ugovor i faktura, fleksibilni termini.",
+    locale: "sr_BA",
+    type: "website" as const,
+  },
+  alternates: {
+    canonical: "https://delfin-amber.vercel.app/firme",
+  },
 };
 
 export default function FirmePage() {

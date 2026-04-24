@@ -56,7 +56,7 @@ const usluge: {
     broj: "06",
   },
   {
-    slug: "dubinsko-pranje-tepisa",
+    slug: "dubinsko-pranje-namjestaja-i-madraca",
     naziv: "Dubinsko pranje namještaja i madraca",
     opis: "Dolazimo k tebi s opremom, peremo na licu mjesta — nema transporta, nema logistike. Sofa, madrac ili fotelja higijenski čisto za jedan dan.",
     detalji: ["Sofe i fotelje", "Madraci — dezinfekcija i uklanjanje grinja", "Tapacirani namještaj"],
@@ -67,8 +67,17 @@ const usluge: {
 ];
 
 export const metadata = {
-  title: "Usluge — Delfin Prijedor",
-  description: "Šest specijalizovanih usluga profesionalnog čišćenja u Prijedoru — svaka s vlastitim protokolom.",
+  title: "Usluge čišćenja u Prijedoru",
+  description: "Šest specijalizovanih usluga čišćenja u Prijedoru — od redovnog čišćenja stanova do pranja fasada dizalicom. Svaka usluga s vlastitim protokolom i timom.",
+  openGraph: {
+    title: "Usluge čišćenja u Prijedoru | Delfin",
+    description: "Šest specijalizovanih usluga čišćenja u Prijedoru — od redovnog čišćenja stanova do pranja fasada dizalicom. Svaka usluga s vlastitim protokolom i timom.",
+    locale: "sr_BA",
+    type: "website" as const,
+  },
+  alternates: {
+    canonical: "https://delfin-amber.vercel.app/usluge",
+  },
 };
 
 export default function UslugePage() {

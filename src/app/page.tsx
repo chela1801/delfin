@@ -32,9 +32,9 @@ const usluge: { naziv: string; opis: string; href: string; Ikona: LucideIcon }[]
     Ikona: HardHat,
   },
   {
-    naziv: "Dubinsko pranje tepiha i namještaja",
-    opis: "Ručno dubinsko pranje tepiha, sofa i tapaciranog namještaja — bez mašina, bez kompromisa.",
-    href: "/usluge/dubinsko-pranje-tepisa",
+    naziv: "Dubinsko pranje namještaja i madraca",
+    opis: "Sofe, fotelje, madraci — dubinsko pranje na licu mjesta, dezinfekcija i uklanjanje grinja.",
+    href: "/usluge/dubinsko-pranje-namjestaja-i-madraca",
     Ikona: Sofa,
   },
 ];
