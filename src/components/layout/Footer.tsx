@@ -4,11 +4,12 @@ import ContactButton from "@/components/ui/ContactButton";
 import { FaInstagram, FaTiktok, FaFacebookF } from "react-icons/fa";
 
 const usluge = [
-  { label: "Čišćenje stanova i kuća", href: "/usluge/ciscenje-stanova-i-kuca" },
-  { label: "Čišćenje poslovnih prostora", href: "/usluge/ciscenje-poslovnih-prostora" },
+  { label: "Čišćenje stanova i kuća",       href: "/usluge/ciscenje-stanova-i-kuca" },
+  { label: "Čišćenje poslovnih prostora",   href: "/usluge/ciscenje-poslovnih-prostora" },
   { label: "Generalno i dubinsko čišćenje", href: "/usluge/generalno-i-dubinsko-ciscenje" },
-  { label: "Čišćenje nakon renoviranja", href: "/usluge/ciscenje-nakon-renoviranja" },
-  { label: "Dubinsko pranje tepiha", href: "/usluge/dubinsko-pranje-tepisa" },
+  { label: "Čišćenje nakon renoviranja",    href: "/usluge/ciscenje-nakon-renoviranja" },
+  { label: "Pranje fasada — dizalica",      href: "/usluge/dizalica-i-pranje-fasada" },
+  { label: "Dubinsko pranje namještaja",    href: "/usluge/dubinsko-pranje-namjestaja-i-madraca" },
 ];
 
 const kompanija = [
@@ -131,8 +132,20 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-white/40 text-xs">
-          <span>© {new Date().getFullYear()} Delfin. Sva prava zadržana.</span>
-          <span>Prijedor, Bosna i Hercegovina</span>
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1">
+            <span>© {new Date().getFullYear()} Delfin. Sva prava zadržana.</span>
+            <Link href="/politika-privatnosti" className="hover:text-white/70 transition-colors">
+              Politika privatnosti
+            </Link>
+          </div>
+          <a
+            href="https://webkeyzlab.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white/70 transition-colors"
+          >
+            Powered by WebkeyZ Lab
+          </a>
         </div>
 
       </div>

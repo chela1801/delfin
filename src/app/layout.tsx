@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ContactModalProvider } from "@/components/ui/ContactModal";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -91,6 +92,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CookieBanner />
         </ContactModalProvider>
       </body>
     </html>
