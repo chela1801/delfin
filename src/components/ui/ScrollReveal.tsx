@@ -4,47 +4,59 @@ import { useEffect } from "react";
 
 export default function ScrollReveal() {
   useEffect(() => {
-    const headings = [
-      ...document.querySelectorAll<HTMLElement>("main h1"),
-      ...document.querySelectorAll<HTMLElement>("main h2"),
-      ...document.querySelectorAll<HTMLElement>("main h3"),
+    const all = [
+      ...document.querySelectorAll<HTMLElement>("main h1, main h2, main h3"),
+      ...document.querySelectorAll<HTMLElement>("main p"),
     ];
-    const texts = [...document.querySelectorAll<HTMLElement>("main p")];
 
-    // Početno stanje — skriveno + pomjereno
-    headings.forEach((el) => {
+    const enterY = (el: HTMLElement) =>
+      el.tagName === "H1" ? 22 : ["H2", "H3"].includes(el.tagName) ? 14 : 10;
+
+    const exitY = (el: HTMLElement) =>
+      -Math.round(enterY(el) * 0.55);
+
+    const dur = (el: HTMLElement) =>
+      el.tagName === "H1" ? 0.72 : ["H2", "H3"].includes(el.tagName) ? 0.62 : 0.55;
+
+    // Postavljamo početno stanje bez tranzicije
+    all.forEach((el) => {
       el.style.opacity    = "0";
-      el.style.transform  = el.tagName === "H1" ? "translateY(22px)" : "translateY(14px)";
+      el.style.transform  = `translateY(${enterY(el)}px)`;
       el.style.willChange = "opacity, transform";
     });
-    texts.forEach((el) => {
-      el.style.opacity    = "0";
-      el.style.transform  = "translateY(10px)";
-      el.style.willChange = "opacity, transform";
-    });
 
-    const reveal = (el: HTMLElement) => {
-      const isH1 = el.tagName === "H1";
-      const isH  = el.tagName === "H2" || el.tagName === "H3";
-      const dur  = isH1 ? 0.72 : isH ? 0.62 : 0.55;
-      el.style.transition = `opacity ${dur}s ease-out, transform ${dur}s ease-out`;
-      el.style.opacity    = "1";
-      el.style.transform  = "none";
-      el.style.willChange = "auto";
-    };
+    // Tranziciju dodajemo tek nakon što je početno stanje naslikano
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        all.forEach((el) => {
+          el.style.transition = `opacity ${dur(el)}s ease-out, transform ${dur(el)}s ease-out`;
+        });
+      })
+    );
 
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach(({ isIntersecting, target }) => {
-          if (!isIntersecting) return;
-          reveal(target as HTMLElement);
-          io.unobserve(target);
+        entries.forEach(({ isIntersecting, target, boundingClientRect }) => {
+          const el = target as HTMLElement;
+          if (isIntersecting) {
+            // Ulaz — pliva gore na mjesto
+            el.style.opacity   = "1";
+            el.style.transform = "none";
+          } else if (boundingClientRect.top < 0) {
+            // Izlaz gore (skrolano dalje) — nastavlja ploviti prema gore
+            el.style.opacity   = "0";
+            el.style.transform = `translateY(${exitY(el)}px)`;
+          } else {
+            // Izlaz dole (skrolano natrag) — vraća se na početno stanje
+            el.style.opacity   = "0";
+            el.style.transform = `translateY(${enterY(el)}px)`;
+          }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -18px 0px" }
+      { threshold: 0.1 }
     );
 
-    [...headings, ...texts].forEach((el) => io.observe(el));
+    all.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
 
