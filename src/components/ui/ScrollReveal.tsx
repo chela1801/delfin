@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const EASE = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
 export default function ScrollReveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const h1s = [...document.querySelectorAll<HTMLElement>("main h1")];
     const hs  = [...document.querySelectorAll<HTMLElement>("main h2, main h3")];
@@ -114,7 +117,7 @@ export default function ScrollReveal() {
       h1io.disconnect();
       clearTimeout(t);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
