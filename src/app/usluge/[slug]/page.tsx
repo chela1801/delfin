@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Home, Building2, Sparkles, HardHat, Sofa, Forklift, Camera, ChevronLeft, type LucideIcon } from "lucide-react";
+import { Home, Building2, Sparkles, HardHat, Sofa, Forklift, ChevronLeft, type LucideIcon } from "lucide-react";
 import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import PhotoStack from "@/components/ui/PhotoStack";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 
@@ -165,14 +166,6 @@ const usluge: {
   },
 ];
 
-function FotoPlaceholder() {
-  return (
-    <div className="w-full aspect-[16/9] bg-[var(--color-bg-alt)] border-2 border-dashed border-[var(--color-border)] rounded-[var(--radius-xl)] flex flex-col items-center justify-center gap-2">
-      <Camera size={32} className="opacity-20 text-[var(--color-muted)]" />
-      <span className="text-sm text-[var(--color-muted)] font-medium">Fotografija s terena</span>
-    </div>
-  );
-}
 
 const proces = [
   { broj: "01", naslov: "Upit i dogovor", opis: "Pošalješ upit na WhatsApp. U roku od par sati dogovorimo termin, vrstu čišćenja i okvirnu cijenu." },
@@ -319,8 +312,13 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
                 </ul>
               </div>
 
-              {/* Foto placeholder */}
-              <FotoPlaceholder />
+              {/* Fotografije s terena */}
+              <div className="flex flex-col gap-4">
+                <h2 className="text-2xl font-bold text-[var(--color-text)] tracking-tight">
+                  Fotografije s terena
+                </h2>
+                <PhotoStack />
+              </div>
 
               {/* Proces */}
               <div className="flex flex-col gap-5">
