@@ -2,10 +2,7 @@
 
 import { useEffect } from "react";
 
-const EASE   = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-const DUR_H1 = 0.85;  // load animacija H1
-const DUR_H  = 0.62;  // H2/H3 scroll
-const DUR_P  = 0.50;  // body text scroll — najsuptilniji
+const EASE = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
 export default function ScrollReveal() {
   useEffect(() => {
@@ -13,56 +10,49 @@ export default function ScrollReveal() {
     const hs  = [...document.querySelectorAll<HTMLElement>("main h2, main h3")];
     const ps  = [...document.querySelectorAll<HTMLElement>("main p")];
 
-    /* ─────────────────────────────────────────────────────
-       H1 — animacija na učitavanje stranice
-    ───────────────────────────────────────────────────── */
+    /* ─── H1: sakrij bez tranzicije ─────────────────────── */
     h1s.forEach((el) => {
-      el.style.opacity    = "0";
-      el.style.transform  = "translateY(26px)";
-      el.style.willChange = "opacity, transform";
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(28px)";
     });
 
-    // Double RAF — garantuje da je početno stanje naslikano prije nego animiramo
+    // Double RAF: počekaj da je početno stanje naslikano, pa animiraj ulaz
     requestAnimationFrame(() =>
       requestAnimationFrame(() => {
         h1s.forEach((el) => {
-          el.style.transition = `opacity ${DUR_H1}s ${EASE}, transform ${DUR_H1}s ${EASE}`;
+          el.style.transition = `opacity 0.85s ${EASE}, transform 0.85s ${EASE}`;
           el.style.opacity    = "1";
           el.style.transform  = "none";
         });
       })
     );
 
-    /* ─────────────────────────────────────────────────────
-       H2/H3 i p — početno stanje skriveno
-    ───────────────────────────────────────────────────── */
+    /* ─── H2/H3 i p: sakrij, dodaj tranziciju u RAF ─────── */
     hs.forEach((el) => {
-      el.style.opacity    = "0";
-      el.style.transform  = "translateY(16px)";
-      el.style.willChange = "opacity, transform";
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(20px)";
     });
     ps.forEach((el) => {
-      el.style.opacity    = "0";
-      el.style.transform  = "translateY(10px)";
-      el.style.willChange = "opacity, transform";
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(12px)";
     });
 
-    // Tranzicija tek nakon što je početno stanje naslikano
     requestAnimationFrame(() =>
       requestAnimationFrame(() => {
         hs.forEach((el) => {
-          el.style.transition = `opacity ${DUR_H}s ${EASE}, transform ${DUR_H}s ${EASE}`;
+          el.style.transition = `opacity 0.62s ${EASE}, transform 0.62s ${EASE}`;
         });
         ps.forEach((el) => {
-          el.style.transition = `opacity ${DUR_P}s ${EASE}, transform ${DUR_P}s ${EASE}`;
+          el.style.transition = `opacity 0.50s ${EASE}, transform 0.50s ${EASE}`;
         });
       })
     );
 
-    /* ─────────────────────────────────────────────────────
-       Intersection Observer — H2/H3 i p
-       ulaz odozdo · izlaz gore · vraćanje odozdo
-    ───────────────────────────────────────────────────── */
+    /* ─── IO za H2/H3 i p ───────────────────────────────────
+       rootMargin "-15% 0px -5% 0px":
+       • exit gore okida se dok je element još 15% vidljiv → animacija ima prostora
+       • enter odozdo okida se 5% prije nego element uđe u viewport
+    ─────────────────────────────────────────────────────── */
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting, target, boundingClientRect }) => {
@@ -73,25 +63,25 @@ export default function ScrollReveal() {
             el.style.opacity   = "1";
             el.style.transform = "none";
           } else if (boundingClientRect.top < 0) {
-            // Izlaz gore (skrolano dalje) — pliva u smjeru scrolla
+            // Izlaz gore — element pliva dalje gore
             el.style.opacity   = "0";
-            el.style.transform = `translateY(${isH ? -10 : -6}px)`;
+            el.style.transform = `translateY(${isH ? -24 : -14}px)`;
           } else {
-            // Izlaz dole (vraćanje) — ide natrag na početnu poziciju
+            // Vraćanje scrola gore — ide na početni offset
             el.style.opacity   = "0";
-            el.style.transform = `translateY(${isH ? 16 : 10}px)`;
+            el.style.transform = `translateY(${isH ? 20 : 12}px)`;
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0, rootMargin: "-15% 0px -5% 0px" }
     );
 
     [...hs, ...ps].forEach((el) => io.observe(el));
 
-    /* ─────────────────────────────────────────────────────
-       Intersection Observer — H1 exit + povratak
-       Startamo tek kad load animacija završi
-    ───────────────────────────────────────────────────── */
+    /* ─── IO za H1: exit + povratak ─────────────────────────
+       rootMargin "-20% 0px 0px 0px":
+       exit okida dok je H1 još 20% vidljiv
+    ─────────────────────────────────────────────────────── */
     const h1io = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting, target, boundingClientRect }) => {
@@ -99,27 +89,24 @@ export default function ScrollReveal() {
           el.style.transition = `opacity 0.70s ${EASE}, transform 0.70s ${EASE}`;
 
           if (isIntersecting) {
-            // Povratak u hero — ulazi na mjesto
             el.style.opacity   = "1";
             el.style.transform = "none";
           } else if (boundingClientRect.top < 0) {
-            // Izlaz gore — nastavlja ploviti prema gore
             el.style.opacity   = "0";
-            el.style.transform = "translateY(-16px)";
+            el.style.transform = "translateY(-22px)";
           } else {
-            // Ispod viewporta — vraća se na ulazni offset
             el.style.opacity   = "0";
-            el.style.transform = "translateY(26px)";
+            el.style.transform = "translateY(28px)";
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0, rootMargin: "-20% 0px 0px 0px" }
     );
 
-    // Čekamo da load animacija završi pa tek onda posmatramo H1
+    // Startamo H1 IO tek kad load animacija završi (850ms + buffer)
     const t = setTimeout(
       () => h1s.forEach((el) => h1io.observe(el)),
-      DUR_H1 * 1000 + 80
+      950
     );
 
     return () => {
