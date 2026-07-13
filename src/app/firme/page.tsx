@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Building2, Sparkles, HardHat, ArrowRight, type LucideIcon } from "lucide-react";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
+import HeroPhoto from "@/components/ui/HeroPhoto";
 
 const prednosti = [
   {
@@ -79,8 +80,9 @@ export default function FirmePage() {
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
         <HeroBg />
+        <HeroPhoto />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
 
             {/* Lijevo — tekst */}
@@ -175,7 +177,7 @@ export default function FirmePage() {
           </div>
         </div>
 
-        <CurveRight fill="#FFFFFF" />
+        <CurveRight fill="#FFFFFF" heroShadow />
       </section>
 
 

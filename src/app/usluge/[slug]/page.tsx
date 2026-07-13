@@ -4,6 +4,7 @@ import { Home, Building2, Sparkles, HardHat, Sofa, Forklift, ChevronLeft, type L
 import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
+import HeroPhoto from "@/components/ui/HeroPhoto";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import PhotoStack from "@/components/ui/PhotoStack";
 
@@ -253,7 +254,9 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
         <HeroBg />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <HeroPhoto />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="max-w-xl flex flex-col gap-4">
@@ -283,7 +286,7 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
           </div>
 
         </div>
-        <CurveRight fill="#FFFFFF" />
+        <CurveRight fill="#FFFFFF" heroShadow />
       </section>
 
 

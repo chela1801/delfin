@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Home, Building2, Sparkles, HardHat, Sofa, ArrowRight, type LucideIcon } from "lucide-react";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
+import HeroPhoto from "@/components/ui/HeroPhoto";
 import ContactButton from "@/components/ui/ContactButton";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
@@ -74,9 +75,10 @@ export default function HomePage() {
       <section className="relative bg-[var(--color-primary)] min-h-[100svh] flex flex-col justify-center pt-24 sm:pt-28 pb-16 sm:pb-20 md:pb-24">
 
         <HeroBg />
+        <HeroPhoto />
 
         {/* Sadržaj */}
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 w-full">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full">
 
           <span className="inline-flex items-center gap-1.5 mb-8 px-3 py-1.5 bg-white/10 border border-white/20 text-white/90 text-sm font-medium rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
@@ -122,8 +124,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Prijelaz → bijela, desna krivina */}
-        <CurveRight fill="#FFFFFF" />
+        {/* Prijelaz → bijela, desna krivina — heroShadow baca sjenku na fotografiju */}
+        <CurveRight fill="#FFFFFF" heroShadow />
       </section>
 
 

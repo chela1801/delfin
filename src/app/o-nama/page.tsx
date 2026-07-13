@@ -3,6 +3,7 @@ import { Camera, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
 import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
+import HeroPhoto from "@/components/ui/HeroPhoto";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 
@@ -55,8 +56,9 @@ export default function ONamaPage() {
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
         <HeroBg />
+        <HeroPhoto />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-4 sm:mb-5">
             Ko smo i zašto radimo<br className="hidden md:block" /> ovaj posao
           </h1>
@@ -66,7 +68,7 @@ export default function ONamaPage() {
           </p>
         </div>
 
-        <CurveRight fill="#FFFFFF" />
+        <CurveRight fill="#FFFFFF" heroShadow />
       </section>
 
 
