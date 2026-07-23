@@ -1,18 +1,30 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
-import { ChevronLeft, ChevronRight, Camera } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-type Card = { id: number };
-const CARDS: Card[] = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+export type PhotoItem = {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+};
+
+interface PhotoStackProps {
+  photos: PhotoItem[];
+}
+
+type Card = { id: number; photo: PhotoItem };
 
 const SPRING     = { type: "spring", stiffness: 180, damping: 22 } as const;
 const THROW_EASE = { duration: 0.52, ease: [0.25, 0.46, 0.45, 0.94] } as const;
 const THROWN     = { x: 180, rotateZ: 22, opacity: 0, scale: 1 as number };
 
-export default function PhotoStack() {
-  const [cards, setCards]         = useState<Card[]>(CARDS);
+export default function PhotoStack({ photos }: PhotoStackProps) {
+  const [cards, setCards]         = useState<Card[]>(
+    photos.map((photo, id) => ({ id, photo }))
+  );
   const [animating, setAnimating] = useState(false);
 
   // Za prev() — karta koja dolazi s desna (remount s initial=THROWN)
@@ -53,7 +65,7 @@ export default function PhotoStack() {
     <div className="flex flex-col items-center gap-5">
 
       {/* ── Stack ─────────────────────────────────────────── */}
-      <div className="relative" style={{ width: 340, height: 256 }}>
+      <div className="relative w-full" style={{ maxWidth: 340, aspectRatio: "340 / 256" }}>
         {cards.map((card, i) => {
           const depth      = cards.length - 1 - i;   // 0 = vrh
           const rotateZ    = depth * 6;
@@ -86,14 +98,17 @@ export default function PhotoStack() {
                 undefined
               }
             >
-              <div className="w-full h-full rounded-[var(--radius-xl)]
-                bg-[var(--color-bg-alt)] border-2 border-[var(--color-border)]
-                flex flex-col items-center justify-center gap-2
+              <div className="relative w-full h-full rounded-[var(--radius-xl)] overflow-hidden
+                border-2 border-[var(--color-border)]
                 shadow-[0_6px_24px_rgba(10,45,110,0.10)]">
-                <Camera size={24} className="opacity-20 text-[var(--color-muted)]" />
-                <span className="text-xs text-[var(--color-muted)] font-medium">
-                  Fotografija s terena
-                </span>
+                <Image
+                  src={card.photo.src}
+                  alt={card.photo.alt}
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: card.photo.objectPosition ?? "center" }}
+                  sizes="340px"
+                />
               </div>
             </motion.div>
           );
@@ -101,28 +116,30 @@ export default function PhotoStack() {
       </div>
 
       {/* ── Strelice ──────────────────────────────────────── */}
-      <div className="flex items-center gap-2">
-        <button
-          onClick={prev}
-          aria-label="Prethodna fotografija"
-          className="w-9 h-9 flex items-center justify-center rounded-full
-            border border-[var(--color-border)] bg-white text-[var(--color-muted)]
-            hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)]
-            active:scale-95 transition-all duration-150"
-        >
-          <ChevronLeft size={16} />
-        </button>
-        <button
-          onClick={next}
-          aria-label="Sljedeća fotografija"
-          className="w-9 h-9 flex items-center justify-center rounded-full
-            border border-[var(--color-border)] bg-white text-[var(--color-muted)]
-            hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)]
-            active:scale-95 transition-all duration-150"
-        >
-          <ChevronRight size={16} />
-        </button>
-      </div>
+      {cards.length > 1 && (
+        <div className="flex items-center gap-2">
+          <button
+            onClick={prev}
+            aria-label="Prethodna fotografija"
+            className="w-9 h-9 flex items-center justify-center rounded-full
+              border border-[var(--color-border)] bg-white text-[var(--color-muted)]
+              hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)]
+              active:scale-95 transition-all duration-150"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Sljedeća fotografija"
+            className="w-9 h-9 flex items-center justify-center rounded-full
+              border border-[var(--color-border)] bg-white text-[var(--color-muted)]
+              hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)]
+              active:scale-95 transition-all duration-150"
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
+      )}
 
     </div>
   );

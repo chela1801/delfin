@@ -6,12 +6,13 @@ import { CurveRight, CurveLeft } from "@/components/ui/Curves";
 import HeroBg from "@/components/ui/HeroBg";
 import HeroPhoto from "@/components/ui/HeroPhoto";
 import FaqAccordion from "@/components/ui/FaqAccordion";
-import PhotoStack from "@/components/ui/PhotoStack";
+import PhotoStack, { type PhotoItem } from "@/components/ui/PhotoStack";
 
 const WHATSAPP_URL = "https://wa.me/38766246346";
 
 const usluge: {
   slug: string; naziv: string; podnaslov: string; za: string; Ikona: LucideIcon;
+  heroFoto: string; heroObjectPosition?: string; fotografije: PhotoItem[];
   stavke: string[]; faq: { q: string; a: string }[]; cta: { naslov: string; tekst: string };
 }[] = [
   {
@@ -20,6 +21,14 @@ const usluge: {
     podnaslov: "Dolazimo s opremom i protokolom, radimo od vrha do dna — ti ne moraš brinuti ni o čemu. Predajemo ti prostor spreman.",
     za: "Privatni korisnici",
     Ikona: Home,
+    heroFoto: "/images/delfin/hero/ciscenje-stanova-i-kuca.png",
+    heroObjectPosition: "68% 50%",
+    fotografije: [
+      { src: "/images/delfin/galerija/ciscenje-stanova-i-kuca/dnevna-soba.png", alt: "Čišćenje dnevnog boravka" },
+      { src: "/images/delfin/galerija/ciscenje-stanova-i-kuca/kontrola-kvaliteta.png", alt: "Završna kontrola kvaliteta čišćenja" },
+      { src: "/images/delfin/galerija/ciscenje-stanova-i-kuca/kuhinja.png", alt: "Čišćenje kuhinje" },
+      { src: "/images/delfin/galerija/ciscenje-stanova-i-kuca/kupatilo.png", alt: "Čišćenje i dezinfekcija kupatila" },
+    ],
     stavke: [
       "Dnevni boravak i spavaće sobe — prašina, podovi, površine",
       "Kupatilo i toalet — detaljno čišćenje, dezinfekcija i potpuna higijena",
@@ -45,6 +54,14 @@ const usluge: {
     podnaslov: "Fleksibilni termini koji ne ometaju rad — jutro, veče ili vikend. Tim koji dolazi, uradi posao i ne smeta.",
     za: "Firme i poslovni prostori",
     Ikona: Building2,
+    heroFoto: "/images/delfin/hero/ciscenje-poslovnih-prostora.png",
+    heroObjectPosition: "80% 40%",
+    fotografije: [
+      { src: "/images/delfin/galerija/ciscenje-poslovnih-prostora/kancelarija.png", alt: "Čišćenje kancelarijskog prostora" },
+      { src: "/images/delfin/galerija/ciscenje-poslovnih-prostora/podovi.png", alt: "Pranje podova u poslovnom prostoru" },
+      { src: "/images/delfin/galerija/ciscenje-poslovnih-prostora/sala-za-sastanke.png", alt: "Čišćenje sale za sastanke" },
+      { src: "/images/delfin/galerija/ciscenje-poslovnih-prostora/sanitarni-cvor.png", alt: "Dezinfekcija sanitarnog čvora" },
+    ],
     stavke: [
       "Kancelarije i sale za sastanke — radne površine, podovi, stakla",
       "Hodnici, ulazi i zajednički prostori",
@@ -70,6 +87,14 @@ const usluge: {
     podnaslov: "Kompletna obnova prostora — od iza frižidera do plafona. Za kad se to mora uraditi kako treba, jednom i zauvijek.",
     za: "Stanovi, kuće, poslovni prostori",
     Ikona: Sparkles,
+    heroFoto: "/images/delfin/hero/generalno-i-dubinsko-ciscenje.png",
+    heroObjectPosition: "75% 55%",
+    fotografije: [
+      { src: "/images/delfin/galerija/generalno-i-dubinsko-ciscenje/dezinfekcija-detalja.png", alt: "Dezinfekcija detalja i površina" },
+      { src: "/images/delfin/galerija/generalno-i-dubinsko-ciscenje/dubinsko-ciscenje-kuhinje.png", alt: "Dubinsko čišćenje kuhinje" },
+      { src: "/images/delfin/galerija/generalno-i-dubinsko-ciscenje/iza-uredjaja.png", alt: "Čišćenje iza kućnih uređaja" },
+      { src: "/images/delfin/galerija/generalno-i-dubinsko-ciscenje/suha-para.png", alt: "Čišćenje suhom parom" },
+    ],
     stavke: [
       "Kompletno čišćenje po protokolu — prostorija po prostorija, bez preskakanja",
       "Teško dostupna mjesta — iza i ispod namještaja, plafoni, uglovi",
@@ -96,6 +121,14 @@ const usluge: {
     podnaslov: "Nakon majstora dolazi naš tim. Građevinska prašina, ostaci boje i maltera — uklanjamo sve dok prostor ne bude spreman za život.",
     za: "Stanovi, kuće i poslovni prostori",
     Ikona: HardHat,
+    heroFoto: "/images/delfin/hero/ciscenje-nakon-renoviranja.png",
+    heroObjectPosition: "65% 50%",
+    fotografije: [
+      { src: "/images/delfin/galerija/ciscenje-nakon-renoviranja/gradjevinska-prasina.png", alt: "Uklanjanje građevinske prašine" },
+      { src: "/images/delfin/galerija/ciscenje-nakon-renoviranja/plocice-i-pod.png", alt: "Čišćenje pločica i poda nakon radova" },
+      { src: "/images/delfin/galerija/ciscenje-nakon-renoviranja/prozori-i-okviri.png", alt: "Čišćenje prozora i okvira" },
+      { src: "/images/delfin/galerija/ciscenje-nakon-renoviranja/spreman-prostor.png", alt: "Prostor spreman za useljenje" },
+    ],
     stavke: [
       "Građevinska prašina — sa svih površina, zidova, plafona i podova",
       "Ostaci boje, maltera, ljepila i silikona sa pločica i stakla",
@@ -121,6 +154,14 @@ const usluge: {
     podnaslov: "Dosežemo do 25 metara visine — pranje fasada, čišćenje staklenih površina i održavanje zelenih površina na visini. Dizalica dostupna i za najam.",
     za: "Firme i privatni korisnici",
     Ikona: Forklift,
+    heroFoto: "/images/delfin/hero/dizalica-i-pranje-fasada.png",
+    heroObjectPosition: "72% 40%",
+    fotografije: [
+      { src: "/images/delfin/galerija/dizalica-i-pranje-fasada/ciscenje-stakala.png", alt: "Čišćenje staklenih površina na visini" },
+      { src: "/images/delfin/galerija/dizalica-i-pranje-fasada/mahovina-i-alge.png", alt: "Uklanjanje mahovine i algi s fasade" },
+      { src: "/images/delfin/galerija/dizalica-i-pranje-fasada/pranje-fasada.png", alt: "Pranje fasade dizalicom" },
+      { src: "/images/delfin/galerija/dizalica-i-pranje-fasada/rezidba-na-visini.png", alt: "Rezidba na visini" },
+    ],
     stavke: [
       "Pranje fasada do 25 metara visine — temeljito, bez skela i rizika",
       "Čišćenje staklenih površina, prozora i obloga na visini",
@@ -146,6 +187,14 @@ const usluge: {
     podnaslov: "Dolazimo s opremom, peremo na licu mjesta — nema transporta, nema logistike. Sofa, madrac ili fotelja — higijenski čisto za jedan dan.",
     za: "Privatni korisnici i firme",
     Ikona: Sofa,
+    heroFoto: "/images/delfin/hero/dubinsko-pranje-namjestaja-i-madraca.png",
+    heroObjectPosition: "62% 55%",
+    fotografije: [
+      { src: "/images/delfin/galerija/dubinsko-pranje-namjestaja-i-madraca/fotelja-mrlja.png", alt: "Uklanjanje mrlje s fotelje" },
+      { src: "/images/delfin/galerija/dubinsko-pranje-namjestaja-i-madraca/madrac.png", alt: "Dubinsko pranje madraca" },
+      { src: "/images/delfin/galerija/dubinsko-pranje-namjestaja-i-madraca/profesionalna-oprema.png", alt: "Profesionalna oprema za pranje namještaja" },
+      { src: "/images/delfin/galerija/dubinsko-pranje-namjestaja-i-madraca/sofa.png", alt: "Dubinsko pranje sofe" },
+    ],
     stavke: [
       "Sofe i fotelje — ekstrakcija prljavštine direktno iz vlakana tkanine",
       "Madraci — dubinsko pranje i dezinfekcija, uklanjanje grinja i alergena",
@@ -254,7 +303,7 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
         <HeroBg />
-        <HeroPhoto />
+        <HeroPhoto src={usluga.heroFoto} objectPosition={usluga.heroObjectPosition} />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
 
@@ -315,12 +364,15 @@ export default async function UslugaDetaljPage({ params }: { params: Promise<{ s
                 </ul>
               </div>
 
-              {/* Fotografije s terena */}
+              {/* Usluga u praksi */}
               <div className="flex flex-col gap-4">
                 <h2 className="text-2xl font-bold text-[var(--color-text)] tracking-tight">
-                  Fotografije s terena
+                  Usluga u praksi
                 </h2>
-                <PhotoStack />
+                <PhotoStack photos={usluga.fotografije} />
+                <p className="text-xs text-[var(--color-muted)]/70">
+                  Ilustrativni prikaz usluge.
+                </p>
               </div>
 
               {/* Proces */}

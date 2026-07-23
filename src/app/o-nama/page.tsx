@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Camera, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
 import ContactButton from "@/components/ui/ContactButton";
 import { CurveRight, CurveLeft } from "@/components/ui/Curves";
@@ -56,7 +57,7 @@ export default function ONamaPage() {
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
         <HeroBg />
-        <HeroPhoto />
+        <HeroPhoto src="/images/delfin/hero/o-nama.png" objectPosition="60% 55%" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-4 sm:mb-5">
@@ -92,7 +93,14 @@ export default function ONamaPage() {
               </p>
             </div>
             <div className="w-full lg:w-[420px] flex-shrink-0">
-              <FotoPlaceholder label="Fotografija prostora / terena" aspect="aspect-[4/3]" />
+              <div className="relative w-full aspect-[4/3] rounded-[var(--radius-xl)] overflow-hidden">
+                <Image
+                  src="/images/delfin/o-nama/teren.png"
+                  alt="Profesionalno čišćenje prostora na terenu"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>

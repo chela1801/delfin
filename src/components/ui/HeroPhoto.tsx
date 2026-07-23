@@ -2,18 +2,25 @@ import Image from "next/image";
 
 interface HeroPhotoProps {
   src?: string;
+  objectPosition?: string;
 }
 
-export default function HeroPhoto({ src = "/hero-bg.jpg" }: HeroPhotoProps) {
+export default function HeroPhoto({ src = "/hero-bg.jpg", objectPosition = "center" }: HeroPhotoProps) {
   return (
     <>
-      {/* Fotografija — zamijeni src kad stigne prava fotografija za tu stranicu */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{ opacity: 0.85, filter: "blur(2px)" }}
       >
-        <Image src={src} alt="" fill className="object-cover object-center" priority />
+        <Image
+          src={src}
+          alt=""
+          fill
+          className="object-cover"
+          style={{ objectPosition }}
+          priority
+        />
       </div>
 
       {/* Vinjeta + prijelazi */}

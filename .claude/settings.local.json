@@ -18,7 +18,20 @@
       "Bash(git commit:*)",
       "Bash(printf .verceln.nextnnode_modulesn.env*.localn)",
       "Bash(git rm:*)",
-      "Bash(gh repo:*)"
+      "Bash(gh repo:*)",
+      "Bash(pkill -f \"next dev -p 3001\")",
+      "Bash(cp src/components/ui/PhotoStack.tsx /tmp/PhotoStack.new.tsx)",
+      "Bash(agent-browser open *)",
+      "Bash(agent-browser wait *)",
+      "Bash(agent-browser eval *)",
+      "Bash(cp /tmp/PhotoStack.new.tsx /Users/macbook/Documents/cchela/delfin/src/components/ui/PhotoStack.tsx)",
+      "Bash(git -C /Users/macbook/Documents/cchela/delfin diff --stat src/components/ui/PhotoStack.tsx)",
+      "Bash(git -C /Users/macbook/Documents/cchela/delfin status --short src/components/ui/PhotoStack.tsx)",
+      "Bash(git stash *)",
+      "Bash(git checkout *)",
+      "Bash(agent-browser network *)",
+      "Bash(agent-browser close *)",
+      "Bash(pkill -f \"next dev\")"
     ]
   }
 }

@@ -80,7 +80,7 @@ export default function FirmePage() {
       <section className="relative bg-[var(--color-primary)] pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden">
 
         <HeroBg />
-        <HeroPhoto />
+        <HeroPhoto src="/images/delfin/hero/firme.png" objectPosition="40% 55%" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col lg:flex-row gap-12 items-start">

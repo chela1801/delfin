@@ -75,7 +75,7 @@ export default function HomePage() {
       <section className="relative bg-[var(--color-primary)] min-h-[100svh] flex flex-col justify-center pt-24 sm:pt-28 pb-16 sm:pb-20 md:pb-24">
 
         <HeroBg />
-        <HeroPhoto />
+        <HeroPhoto src="/images/delfin/hero/pocetna.png" objectPosition="68% 45%" />
 
         {/* Sadržaj */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full">
